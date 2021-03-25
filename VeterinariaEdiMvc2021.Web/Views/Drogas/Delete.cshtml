@@ -1,0 +1,41 @@
+﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Droga.DrogaEditViewModel
+
+@{ ViewBag.Title = "Delete"; }
+<div>
+    <h2>Borre una Droga</h2>
+
+</div>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Està seguro de borrar el registro seleccionado?</h3>
+    <div>
+        <h4>Droga</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NombreDroga)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NombreDroga)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.DrogaId);
+            @Html.ValidationSummary(true, "", new{ @class = "text-Danger" });
+            <div class="form-actions no-color">
+                <input type="submit" value="Borrar" class="btn btn-danger" /> |
+                @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" });
+            </div>
+        }
+    </div>
+</body>
+</html>

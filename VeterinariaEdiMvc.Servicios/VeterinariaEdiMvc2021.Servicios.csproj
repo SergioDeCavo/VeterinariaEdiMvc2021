@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3CB485F5-2CC4-4A5C-922D-758DE3AC1B52}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VeterinariaEdiMvc.Servicios</RootNamespace>
+    <AssemblyName>VeterinariaEdiMvc.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\Facades\IServiciosLaboratorio.cs" />
+    <Compile Include="Servicios\Facades\IServiciosDroga.cs" />
+    <Compile Include="Servicios\Facades\IServiciosFormaFarmaceutica.cs" />
+    <Compile Include="Servicios\Facades\IServiciosLocalidad.cs" />
+    <Compile Include="Servicios\Facades\IServiciosProvincia.cs" />
+    <Compile Include="Servicios\Facades\IServiciosRaza.cs" />
+    <Compile Include="Servicios\Facades\IServiciosTipoDeDocumento.cs" />
+    <Compile Include="Servicios\Facades\IServiciosTipoDeMascota.cs" />
+    <Compile Include="Servicios\Facades\IServiciosTipoDeMedicamento.cs" />
+    <Compile Include="Servicios\Facades\IServiciosTipoDeServicio.cs" />
+    <Compile Include="Servicios\Facades\IServiciosTipoDeTarea.cs" />
+    <Compile Include="Servicios\ServiciosDroga.cs" />
+    <Compile Include="Servicios\ServiciosFormaFarmaceutica.cs" />
+    <Compile Include="Servicios\ServiciosLaboratorio.cs" />
+    <Compile Include="Servicios\ServiciosLocalidad.cs" />
+    <Compile Include="Servicios\ServiciosProvincia.cs" />
+    <Compile Include="Servicios\ServiciosRaza.cs" />
+    <Compile Include="Servicios\ServiciosTipoDeDocumento.cs" />
+    <Compile Include="Servicios\ServiciosTipoDeMascota.cs" />
+    <Compile Include="Servicios\ServiciosTipoDeMedicamento.cs" />
+    <Compile Include="Servicios\ServiciosTipoDeServicio.cs" />
+    <Compile Include="Servicios\ServiciosTipoDeTarea.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VeterinariaEdiMvc2021.Datos\VeterinariaEdiMvc2021.Datos.csproj">
+      <Project>{8A0B1431-1B7E-4B23-97EC-D455368F3C10}</Project>
+      <Name>VeterinariaEdiMvc2021.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VeterinariaEdiMvc2021.Entidades\VeterinariaEdiMvc2021.Entidades.csproj">
+      <Project>{473A474A-254E-47B1-B2C4-9590D3321C93}</Project>
+      <Name>VeterinariaEdiMvc2021.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VeterinariaEdiMvc2021.Mapeador\VeterinariaEdiMvc2021.Mapeador.csproj">
+      <Project>{bd619b14-9be9-4227-b0de-42c5daa51ee3}</Project>
+      <Name>VeterinariaEdiMvc2021.Mapeador</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

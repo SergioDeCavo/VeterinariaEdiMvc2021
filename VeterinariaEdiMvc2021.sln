@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaEdiMvc2021.Entidades", "VeterinariaEdiMvc2021.Entidades\VeterinariaEdiMvc2021.Entidades.csproj", "{473A474A-254E-47B1-B2C4-9590D3321C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaEdiMvc2021.Datos", "VeterinariaEdiMvc2021.Datos\VeterinariaEdiMvc2021.Datos.csproj", "{8A0B1431-1B7E-4B23-97EC-D455368F3C10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaEdiMvc2021.Servicios", "VeterinariaEdiMvc.Servicios\VeterinariaEdiMvc2021.Servicios.csproj", "{3CB485F5-2CC4-4A5C-922D-758DE3AC1B52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaEdiMvc2021.Windows", "VeterinariaEdiMvc2021.Windows\VeterinariaEdiMvc2021.Windows.csproj", "{FDA1D39C-C0A0-4B6A-BBA9-9B193B76578E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaEdiMvc2021.Web", "VeterinariaEdiMvc2021.Web\VeterinariaEdiMvc2021.Web.csproj", "{02BBE22C-6A69-4C0D-80C5-BEDDA58F3545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaEdiMvc2021.Mapeador", "VeterinariaEdiMvc2021.Mapeador\VeterinariaEdiMvc2021.Mapeador.csproj", "{BD619B14-9BE9-4227-B0DE-42C5DAA51EE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{473A474A-254E-47B1-B2C4-9590D3321C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{473A474A-254E-47B1-B2C4-9590D3321C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{473A474A-254E-47B1-B2C4-9590D3321C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{473A474A-254E-47B1-B2C4-9590D3321C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A0B1431-1B7E-4B23-97EC-D455368F3C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A0B1431-1B7E-4B23-97EC-D455368F3C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A0B1431-1B7E-4B23-97EC-D455368F3C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A0B1431-1B7E-4B23-97EC-D455368F3C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB485F5-2CC4-4A5C-922D-758DE3AC1B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB485F5-2CC4-4A5C-922D-758DE3AC1B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB485F5-2CC4-4A5C-922D-758DE3AC1B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB485F5-2CC4-4A5C-922D-758DE3AC1B52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDA1D39C-C0A0-4B6A-BBA9-9B193B76578E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA1D39C-C0A0-4B6A-BBA9-9B193B76578E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA1D39C-C0A0-4B6A-BBA9-9B193B76578E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDA1D39C-C0A0-4B6A-BBA9-9B193B76578E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02BBE22C-6A69-4C0D-80C5-BEDDA58F3545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02BBE22C-6A69-4C0D-80C5-BEDDA58F3545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02BBE22C-6A69-4C0D-80C5-BEDDA58F3545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02BBE22C-6A69-4C0D-80C5-BEDDA58F3545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD619B14-9BE9-4227-B0DE-42C5DAA51EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD619B14-9BE9-4227-B0DE-42C5DAA51EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD619B14-9BE9-4227-B0DE-42C5DAA51EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD619B14-9BE9-4227-B0DE-42C5DAA51EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF79D3AA-DFCB-4E4B-A0BB-FFA96C9980ED}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A0B1431-1B7E-4B23-97EC-D455368F3C10}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VeterinariaEdiMvc2021.Datos</RootNamespace>
+    <AssemblyName>VeterinariaEdiMvc2021.Datos</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityTypeConfigurations\DrogaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\FormaFarmaceuticaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\LaboratorioEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\LocalidadEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\ProvinciaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\RazaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\TipoDeDocumentoEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\TipoDeMascotaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\TipoDeMedicamentoEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\TipoDeServicioEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\TipoDeTareaEntityTypeConfiguration.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioDrogas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioFormaFarmaceuticas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioLaboratorios.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioLocalidades.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioProvincias.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioRazas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioTipoDeDocumentos.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioTipoDeMascotas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioTipoDeMedicamentos.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioTipoDeServicios.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioTipoDeTareas.cs" />
+    <Compile Include="Repositorios\RepositorioDrogas.cs" />
+    <Compile Include="Repositorios\RepositorioFormaFarmaceuticas.cs" />
+    <Compile Include="Repositorios\RepositorioLaboratorios.cs" />
+    <Compile Include="Repositorios\RepositorioLocalidades.cs" />
+    <Compile Include="Repositorios\RepositorioProvincias.cs" />
+    <Compile Include="Repositorios\RepositorioRazas.cs" />
+    <Compile Include="Repositorios\RepositorioTipoDeDocumentos.cs" />
+    <Compile Include="Repositorios\RepositorioTipoDeMascotas.cs" />
+    <Compile Include="Repositorios\RepositorioTipoDeMedicamentos.cs" />
+    <Compile Include="Repositorios\RepositorioTipoDeServicios.cs" />
+    <Compile Include="Repositorios\RepositorioTipoDeTareas.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="VeterinariaEdiMvc2021DbContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VeterinariaEdiMvc2021.Entidades\VeterinariaEdiMvc2021.Entidades.csproj">
+      <Project>{473a474a-254e-47b1-b2c4-9590d3321c93}</Project>
+      <Name>VeterinariaEdiMvc2021.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VeterinariaEdiMvc2021.Mapeador\VeterinariaEdiMvc2021.Mapeador.csproj">
+      <Project>{bd619b14-9be9-4227-b0de-42c5daa51ee3}</Project>
+      <Name>VeterinariaEdiMvc2021.Mapeador</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>
