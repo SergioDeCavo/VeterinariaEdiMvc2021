@@ -49,21 +49,7 @@ namespace VeterinariaEdiMvc2021.Windows
             this.Close();
         }
 
-        private void frmTiposDeTareas_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                _mapper = VeterinariaEdiMvc2021.Mapeador.Mapeador.CrearMapper();
-                //_servicio = new ServiciosTipoDeTarea();
-                _lista = _servicio.GetLista();
-                MostrarDatosEnGrilla();
-            }
-            catch (Exception)
-            {
-
-                throw new Exception("Error");
-            }
-        }
+        
 
         private void MostrarDatosEnGrilla()
         {
@@ -193,6 +179,22 @@ namespace VeterinariaEdiMvc2021.Windows
                 MessageBox.Show(exception.Message, "Error",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void frmTiposDeTareas_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                _mapper = VeterinariaEdiMvc2021.Mapeador.Mapeador.CrearMapper();
+                //_servicio = new ServiciosTipoDeTarea();
+                _lista = _servicio.GetLista();
+                MostrarDatosEnGrilla();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Error");
             }
         }
     }

@@ -88,6 +88,7 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
                 Localidad localidad = _mapper.Map<Localidad>(localidadDto);
                 _repositorio.Guardar(localidad);
                 _unitOfWork.Save();
+                localidadDto.LocalidadId = localidad.LocalidadId;
             }
             catch (Exception e)
             {

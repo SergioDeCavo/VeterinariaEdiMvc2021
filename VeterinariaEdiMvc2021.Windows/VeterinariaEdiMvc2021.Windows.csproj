@@ -68,11 +68,29 @@
     <Compile Include="frmArchivos.Designer.cs">
       <DependentUpon>frmArchivos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBuscarProvincias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuscarProvincias.Designer.cs">
+      <DependentUpon>frmBuscarProvincias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscarTiposDeMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuscarTiposDeMascota.Designer.cs">
+      <DependentUpon>frmBuscarTiposDeMascota.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmClientes.Designer.cs">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientesAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientesAE.Designer.cs">
+      <DependentUpon>frmClientesAE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCompras.cs">
       <SubType>Form</SubType>
@@ -97,6 +115,12 @@
     </Compile>
     <Compile Include="frmEmpleados.Designer.cs">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmpleadosAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmpleadosAE.Designer.cs">
+      <DependentUpon>frmEmpleadosAE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmFormasFarmaceuticas.cs">
       <SubType>Form</SubType>
@@ -128,6 +152,12 @@
     <Compile Include="frmLocalidades.Designer.cs">
       <DependentUpon>frmLocalidades.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLocalidadesAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLocalidadesAE.Designer.cs">
+      <DependentUpon>frmLocalidadesAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMascotas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,11 +170,23 @@
     <Compile Include="frmMascotas2.Designer.cs">
       <DependentUpon>frmMascotas2.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMascotas2AE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMascotas2AE.Designer.cs">
+      <DependentUpon>frmMascotas2AE.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMedicamentos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMedicamentos.Designer.cs">
       <DependentUpon>frmMedicamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMedicamentosAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMedicamentosAE.Designer.cs">
+      <DependentUpon>frmMedicamentosAE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMedicinas.cs">
       <SubType>Form</SubType>
@@ -164,6 +206,12 @@
     <Compile Include="frmProveedores.Designer.cs">
       <DependentUpon>frmProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProveedoresAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProveedoresAE.Designer.cs">
+      <DependentUpon>frmProveedoresAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProvincias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +229,12 @@
     </Compile>
     <Compile Include="frmRazas.Designer.cs">
       <DependentUpon>frmRazas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRazasAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRazasAE.Designer.cs">
+      <DependentUpon>frmRazasAE.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServicios.cs">
       <SubType>Form</SubType>
@@ -254,6 +308,7 @@
     <Compile Include="frmVentas.Designer.cs">
       <DependentUpon>frmVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Mapeador\AutoMapperConfig.cs" />
     <Compile Include="Ninject\Bindings.cs" />
     <Compile Include="Ninject\DI.cs" />
@@ -268,8 +323,17 @@
     <EmbeddedResource Include="frmArchivos.resx">
       <DependentUpon>frmArchivos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscarProvincias.resx">
+      <DependentUpon>frmBuscarProvincias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscarTiposDeMascota.resx">
+      <DependentUpon>frmBuscarTiposDeMascota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmClientes.resx">
       <DependentUpon>frmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientesAE.resx">
+      <DependentUpon>frmClientesAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCompras.resx">
       <DependentUpon>frmCompras.cs</DependentUpon>
@@ -282,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpleados.resx">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmpleadosAE.resx">
+      <DependentUpon>frmEmpleadosAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFormasFarmaceuticas.resx">
       <DependentUpon>frmFormasFarmaceuticas.cs</DependentUpon>
@@ -298,14 +365,23 @@
     <EmbeddedResource Include="frmLocalidades.resx">
       <DependentUpon>frmLocalidades.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLocalidadesAE.resx">
+      <DependentUpon>frmLocalidadesAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMascotas.resx">
       <DependentUpon>frmMascotas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMascotas2.resx">
       <DependentUpon>frmMascotas2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMascotas2AE.resx">
+      <DependentUpon>frmMascotas2AE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMedicamentos.resx">
       <DependentUpon>frmMedicamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMedicamentosAE.resx">
+      <DependentUpon>frmMedicamentosAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMedicinas.resx">
       <DependentUpon>frmMedicinas.cs</DependentUpon>
@@ -316,6 +392,9 @@
     <EmbeddedResource Include="frmProveedores.resx">
       <DependentUpon>frmProveedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProveedoresAE.resx">
+      <DependentUpon>frmProveedoresAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProvincias.resx">
       <DependentUpon>frmProvincias.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRazas.resx">
       <DependentUpon>frmRazas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRazasAE.resx">
+      <DependentUpon>frmRazasAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>

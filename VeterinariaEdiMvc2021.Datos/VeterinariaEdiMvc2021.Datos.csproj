@@ -54,10 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityTypeConfigurations\ClienteEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\DrogaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\EmpleadoEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\FormaFarmaceuticaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\LaboratorioEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\LocalidadEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\MascotaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\MedicamentoEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\ProveedorEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\ProvinciaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\RazaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\TipoDeDocumentoEntityTypeConfiguration.cs" />

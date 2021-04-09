@@ -80,7 +80,7 @@ namespace VeterinariaEdiMvc2021.Windows
             frm.ShowDialog(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTiposDeTareas_Click(object sender, EventArgs e)
         {
             frmTiposDeTareas frm = DI.Create<frmTiposDeTareas>();
             frm.ShowDialog(this);

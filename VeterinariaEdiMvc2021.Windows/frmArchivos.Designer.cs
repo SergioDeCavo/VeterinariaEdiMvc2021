@@ -38,7 +38,7 @@
             this.btnLocalidades = new System.Windows.Forms.Button();
             this.btnTiposDeDocumentos = new System.Windows.Forms.Button();
             this.btnTiposDeServicios = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTiposDeTareas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,21 +178,21 @@
             this.btnTiposDeServicios.UseVisualStyleBackColor = false;
             this.btnTiposDeServicios.Click += new System.EventHandler(this.btnTiposDeServicios_Click);
             // 
-            // button1
+            // btnTiposDeTareas
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(26, 439);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 50);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Tipos de Tareas";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnTiposDeTareas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnTiposDeTareas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTiposDeTareas.ForeColor = System.Drawing.Color.White;
+            this.btnTiposDeTareas.Image = ((System.Drawing.Image)(resources.GetObject("btnTiposDeTareas.Image")));
+            this.btnTiposDeTareas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTiposDeTareas.Location = new System.Drawing.Point(26, 439);
+            this.btnTiposDeTareas.Name = "btnTiposDeTareas";
+            this.btnTiposDeTareas.Size = new System.Drawing.Size(161, 50);
+            this.btnTiposDeTareas.TabIndex = 18;
+            this.btnTiposDeTareas.Text = "Tipos de Tareas";
+            this.btnTiposDeTareas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTiposDeTareas.UseVisualStyleBackColor = false;
+            this.btnTiposDeTareas.Click += new System.EventHandler(this.btnTiposDeTareas_Click);
             // 
             // frmArchivos
             // 
@@ -200,7 +200,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 531);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnTiposDeTareas);
             this.Controls.Add(this.btnTiposDeServicios);
             this.Controls.Add(this.btnTiposDeDocumentos);
             this.Controls.Add(this.btnLocalidades);
@@ -229,6 +229,6 @@
         private System.Windows.Forms.Button btnLocalidades;
         private System.Windows.Forms.Button btnTiposDeDocumentos;
         private System.Windows.Forms.Button btnTiposDeServicios;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTiposDeTareas;
     }
 }

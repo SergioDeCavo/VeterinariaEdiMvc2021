@@ -45,7 +45,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             {
                 return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad);
             }
-            return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad && p.LocalidadId != localidad.LocalidadId);
+            return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad && p.ProvinciaId==localidad.ProvinciaId && p.LocalidadId != localidad.LocalidadId);
         }
 
         public List<LocalidadListDto> GetLista()

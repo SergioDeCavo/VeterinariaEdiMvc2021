@@ -46,7 +46,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             {
                 return _context.Razas.Any(p => p.Descripcion == raza.Descripcion);
             }
-            return _context.Razas.Any(p => p.Descripcion == raza.Descripcion && p.RazaId != raza.RazaId);
+            return _context.Razas.Any(p => p.Descripcion == raza.Descripcion && p.TipoDeMascotaId==raza.TipoDeMascotaId && p.RazaId != raza.RazaId);
         }
 
         public List<RazaListDto> GetLista()
@@ -67,6 +67,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
                 
             }
         }
+
 
         public RazaEditDto GetRazaPorId(int? id)
         {

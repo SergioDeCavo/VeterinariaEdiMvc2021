@@ -40,7 +40,11 @@
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCerrar = new System.Windows.Forms.ToolStripButton();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.cmnRaza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnTipoDeMascota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -72,6 +76,7 @@
             this.tsbNuevo.Text = "Nuevo";
             this.tsbNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
             // tsbBorrar
             // 
@@ -84,6 +89,7 @@
             this.tsbBorrar.Text = "Borrar";
             this.tsbBorrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbBorrar.Click += new System.EventHandler(this.tsbBorrar_Click);
             // 
             // tsbEditar
             // 
@@ -96,6 +102,7 @@
             this.tsbEditar.Text = "Editar";
             this.tsbEditar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -113,6 +120,7 @@
             this.tsbBuscar.Text = "Buscar";
             this.tsbBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbBuscar.Click += new System.EventHandler(this.tsbBuscar_Click);
             // 
             // tsbActualizar
             // 
@@ -125,6 +133,7 @@
             this.tsbActualizar.Text = "Actualizar";
             this.tsbActualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -161,18 +170,53 @@
             this.tsbCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbCerrar.Click += new System.EventHandler(this.tsbCerrar_Click);
             // 
+            // dgvDatos
+            // 
+            this.dgvDatos.AllowUserToAddRows = false;
+            this.dgvDatos.AllowUserToDeleteRows = false;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmnRaza,
+            this.cmnTipoDeMascota});
+            this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDatos.Location = new System.Drawing.Point(0, 62);
+            this.dgvDatos.MultiSelect = false;
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersVisible = false;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatos.Size = new System.Drawing.Size(814, 469);
+            this.dgvDatos.TabIndex = 12;
+            // 
+            // cmnRaza
+            // 
+            this.cmnRaza.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnRaza.HeaderText = "Raza";
+            this.cmnRaza.Name = "cmnRaza";
+            this.cmnRaza.ReadOnly = true;
+            // 
+            // cmnTipoDeMascota
+            // 
+            this.cmnTipoDeMascota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnTipoDeMascota.HeaderText = "Tipo de Mascota";
+            this.cmnTipoDeMascota.Name = "cmnTipoDeMascota";
+            this.cmnTipoDeMascota.ReadOnly = true;
+            // 
             // frmRazas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 531);
             this.ControlBox = false;
+            this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmRazas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Razas";
+            this.Load += new System.EventHandler(this.frmRazas_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +234,8 @@
         private System.Windows.Forms.ToolStripButton tsbImprimir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbCerrar;
+        private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnRaza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnTipoDeMascota;
     }
 }
