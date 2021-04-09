@@ -75,7 +75,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
                 var lista= _context.Provincias.ToList();
                 return _mapper.Map<List<ProvinciaListDto>>(lista);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error al intentar leer las Provincias");
