@@ -1,5 +1,5 @@
-﻿@model IEnumerable<VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad.LocalidadListViewModel>
-
+﻿@model PagedList.IPagedList<VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad.LocalidadListViewModel>
+@using PagedList.Mvc
 @{ ViewBag.Title = "Index"; }
 <div>
     <a href="@Url.Action("Create","Localidades")" class="btn btn-primary" style="float: right">Nuevo</a>
@@ -19,34 +19,12 @@
     <title>Listado de Localidades</title>
 </head>
 <body>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreLocalidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Provincia)
-            </th>
-            <th></th>
-        </tr>
+    @Html.Partial("_ListaLocalidades", Model)
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreLocalidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Provincia)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.LocalidadId }, new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Detalles", "Details", new { id = item.LocalidadId }, new { @class = "btn btn-info" })
-                    @Html.ActionLink("Borrar", "Delete", new { id = item.LocalidadId }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
-
-    </table>
 </body>
 </html>
+@*Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page
+}))*@

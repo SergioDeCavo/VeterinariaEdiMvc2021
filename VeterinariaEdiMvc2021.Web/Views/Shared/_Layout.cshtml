@@ -4,39 +4,49 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <div class="container">
+        <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Principal", "Index", "Home")</li>
+                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Enlace", "About", "Home")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href=@Url.Action("Index", "Drogas")>Drogas</a></li>
+                        <li><a href=@Url.Action("Index", "FormasFarmaceuticas")>Formas Farmacèuticas</a></li>
+                        <li><a href=@Url.Action("Index", "Laboratorios")>Laboratorios</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href=@Url.Action("Index", "Provincias")>Provincias</a></li>
+                        <li><a href=@Url.Action("Index", "Localidades")>Localidades</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href=@Url.Action("Index", "Mascotas")>Mascotas</a></li>
+                        <li><a href=@Url.Action("Index", "TipoDeMascotas")>Tipos de Mascotas</a></li>
+                        <li><a href=@Url.Action("Index", "Razas")>Razas</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href=@Url.Action("Index", "Medicamentos")>Medicamentos</a></li>
+                        <li><a href=@Url.Action("Index", "TipoDeMedicamentos")>Tipos De Medicamentos</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href=@Url.Action("Index", "TipoDeDocumentos")>Tipos de Documentos</a></li>
+                        <li><a href=@Url.Action("Index", "TipoDeServicios")>Tipos De Servicios</a></li>
+                        <li><a href=@Url.Action("Index", "TipoDeTareas")>Tipos de Tareas</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href=@Url.Action("Index", "Clientes")>Clientes</a></li>
+                        <li><a href=@Url.Action("Index", "Empleados")>Empleados</a></li>
+                        <li><a href=@Url.Action("Index", "Proveedores")>Proveedores</a></li>
 
-                    <button type="button" class="btn btn-warning navbar-btn">Principal</button>
-                    <button type="button" class="btn btn-warning navbar-btn">Contacto</button>
-                    <button type="button" class="btn btn-warning navbar-btn">Enlace</button>
-                    @Html.ActionLink("Principal", "Index", "Home")
-                    @Html.ActionLink("Contacto", "Contact", "Home")
-                    @Html.ActionLink("Enlace", "About", "Home")
-                    @Html.ActionLink("Drogas", "Index", "Drogas")
-                    @Html.ActionLink("F. Farmacèuticas", "Index", "FormasFarmaceuticas")
-                    @Html.ActionLink("Laboratorios", "Index", "Laboratorios")
-                    @Html.ActionLink("Provincias", "Index", "Provincias")
-                    @Html.ActionLink("Tipos de Documentos", "Index", "TipoDeDocumentos")
-                    @Html.ActionLink("Tipos de Mascotas", "Index", "TipoDeMascotas")
-                    @Html.ActionLink("Tipos de Servicios", "Index", "TipoDeServicios")
-                    @Html.ActionLink("Tipos de Tareas", "Index", "TipoDeTareas")
-                    @Html.ActionLink("Razas", "Index", "Razas")
-                    @Html.ActionLink("Localidades", "Index", "Localidades")
-                </button>
+                    </ul>
 
-            </div>
-            
+            </ul>
+            @Html.Action("Summary", "Carrito")
         </div>
+
     </div>
     <div class="container body-content">
         @RenderBody()

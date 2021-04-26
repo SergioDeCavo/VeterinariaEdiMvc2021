@@ -1,0 +1,11 @@
+﻿@model VeterinariaEdiMvc2021.Entidades.Entidades.Carrito
+<div class="navbar-right">
+    @Html.ActionLink("CheckOut", "CheckOut", "Carrito",
+            new { returnUrl = Request.Url.PathAndQuery },
+            new { @class = "btn btn-default navbar-btn" })
+</div>
+<div class="navbar-text navbar-right">
+    <b>Tu carrito:</b>
+    @Model.GetItems().Sum(i => i.Cantidad) item(s),
+    $@Model.TotalCarrito()
+</div>

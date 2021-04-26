@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(TipoDeMedicamento tipoDeMedicamento);
         void Borrar(int? id);
         bool Existe(TipoDeMedicamento tipoDeMedicamento);
+        bool EstaRelacionado(TipoDeMedicamento tipoDeMedicamento);
     }
 }

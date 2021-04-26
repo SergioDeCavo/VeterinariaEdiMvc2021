@@ -38,6 +38,20 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        public bool EstaRelacionado(FormaFarmaceuticaEditDto formaFarmaceuticaDto)
+        {
+            try
+            {
+                FormaFarmaceutica formaFarmaceutica = _mapper.Map<FormaFarmaceutica>(formaFarmaceuticaDto);
+                return _repositorio.EstaRelacionado(formaFarmaceutica);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
         public bool Existe(FormaFarmaceuticaEditDto formaFarmaceuticaDto)
         {
             try

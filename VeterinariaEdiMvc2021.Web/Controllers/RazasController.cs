@@ -7,6 +7,8 @@ using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeMascota;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Raza;
 using System;
 using System.Net;
+using System.Linq;
+using PagedList;
 
 namespace VeterinariaEdiMvc2021.Web.Controllers
 {
@@ -23,10 +25,13 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             _mapper = Mapeador.Mapeador.CrearMapper();
         }
         // GET: Razas
-        public ActionResult Index()
+        public ActionResult Index(int? page=null)
         {
-            var listaDto = _servicio.GetLista();
-            var listaVm = _mapper.Map<List<RazaListViewModel>>(listaDto);
+            page = (page ?? 1);
+            var listaDto = _servicio.GetLista(null);
+            var listaVm = _mapper.Map<List<RazaListViewModel>>(listaDto)
+                .OrderBy(c => c.Descripcion)
+                .ToPagedList((int)page, 5);
             return View(listaVm);
         }
 
@@ -133,12 +138,13 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RazaListDto razaDto = _mapper.Map<RazaListDto>(_servicio.GetRazaPorId(id));
+            var razaDto = _servicio.GetRazaPorId(id);
             if (razaDto == null)
             {
                 return HttpNotFound("Còdigo de Raza inexistente...");
             }
             RazaListViewModel razaVm = _mapper.Map<RazaListViewModel>(razaDto);
+            razaVm.TipoDeMascota = (_servicioTipoDeMascota.GetipoDeMascotaPorId(razaDto.TipoDeMascotaId)).Descripcion;
             return View(razaVm);
         }
 
@@ -147,15 +153,15 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
 
         public ActionResult Delete(RazaListViewModel razaVm)
         {
-            //RazaEditDto razaDto = _mapper.Map<RazaEditDto>(razaVm);
-            //if (_servicio.EstaRelacionado(razaDto))
-            //{
-            //    ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
-            //    return View(razaVm);
-            //}
+            RazaEditDto razaDto = _mapper.Map<RazaEditDto>(razaVm);
+            if (_servicio.EstaRelacionado(razaDto))
+            {
+                ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
+                return View(razaVm);
+            }
             try
             {
-                RazaListDto razaDto = _mapper.Map<RazaListDto>(_servicio.GetRazaPorId(razaVm.RazaId));
+                RazaListDto raDto = _mapper.Map<RazaListDto>(_servicio.GetRazaPorId(razaVm.RazaId));
                 razaVm = _mapper.Map<RazaListViewModel>(_servicio.GetRazaPorId(razaVm.RazaId));
                 _servicio.Borrar(razaVm.RazaId);
                 TempData["Msg"] = "Registro Borrado...";

@@ -40,26 +40,53 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             
         }
 
-        public bool Existe(Raza raza)
-        {
-            if (raza.RazaId==0)
-            {
-                return _context.Razas.Any(p => p.Descripcion == raza.Descripcion);
-            }
-            return _context.Razas.Any(p => p.Descripcion == raza.Descripcion && p.TipoDeMascotaId==raza.TipoDeMascotaId && p.RazaId != raza.RazaId);
-        }
-
-        public List<RazaListDto> GetLista()
+        public bool EstaRelacionado(Raza raza)
         {
             try
             {
-                var listaDto = _context.Razas.Include(p => p.TipoDeMascota).Select(p => new RazaListDto
+                return _context.Mascotas.Any(r => r.RazaId == raza.RazaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si està relacionada una Raza");
+            }
+        }
+
+        public bool Existe(Raza raza)
+        {
+            try
+            {
+                if (raza.RazaId == 0)
+                {
+                    return _context.Razas.Any(p => p.Descripcion == raza.Descripcion);
+                }
+                return _context.Razas.Any(p => p.Descripcion == raza.Descripcion && p.TipoDeMascotaId == raza.TipoDeMascotaId && p.RazaId != raza.RazaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe una Raza");
+            }
+        }
+
+        public List<RazaListDto> GetLista(string tipoDeMascota)
+        {
+            try
+            {
+                IQueryable<RazaListDto> listaDto = _context.Razas.Include(p => p.TipoDeMascota)
+                    .Select(p => new RazaListDto
                 {
                     RazaId = p.RazaId,
                     Descripcion = p.Descripcion,
-                    TipoDeMascota=p.TipoDeMascota.Descripcion
-                }).ToList();
-                return listaDto;
+                    TipoDeMascota = p.TipoDeMascota.Descripcion
+
+                });
+                if (tipoDeMascota!=null)
+                {
+                    listaDto = listaDto.Where(p => p.TipoDeMascota == tipoDeMascota);
+                    
+                    
+                }
+                return listaDto.ToList();
             }
             catch (Exception e)
             {

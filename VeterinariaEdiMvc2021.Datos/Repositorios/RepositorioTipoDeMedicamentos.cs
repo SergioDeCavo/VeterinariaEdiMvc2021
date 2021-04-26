@@ -37,14 +37,33 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public bool EstaRelacionado(TipoDeMedicamento tipoDeMedicamento)
+        {
+            try
+            {
+                return _context.Medicamentos.Any(tm => tm.TipoDeMedicamentoId == tipoDeMedicamento.TipoDeMedicamentoId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si està relacionado un Tipo de Medicamento");
+            }
+        }
+
         public bool Existe(TipoDeMedicamento tipoDeMedicamento)
         {
-            if (tipoDeMedicamento.TipoDeMedicamentoId == 0)
+            try
             {
-                return _context.TipoDeMedicamentos.Any(tme => tme.Descripcion == tipoDeMedicamento.Descripcion);
-            }
+                if (tipoDeMedicamento.TipoDeMedicamentoId == 0)
+                {
+                    return _context.TipoDeMedicamentos.Any(tme => tme.Descripcion == tipoDeMedicamento.Descripcion);
+                }
 
-            return _context.TipoDeMedicamentos.Any(tme => tme.Descripcion == tipoDeMedicamento.Descripcion && tme.TipoDeMedicamentoId == tipoDeMedicamento.TipoDeMedicamentoId);
+                return _context.TipoDeMedicamentos.Any(tme => tme.Descripcion == tipoDeMedicamento.Descripcion && tme.TipoDeMedicamentoId == tipoDeMedicamento.TipoDeMedicamentoId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe un Tipo de Medicamento");
+            }
         }
 
         public TipoDeMedicamentoEditDto GetipoDeMedicamentoPorId(int? id)

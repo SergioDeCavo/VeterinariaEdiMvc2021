@@ -99,6 +99,21 @@ namespace VeterinariaEdiMvc2021.Web.App_Start
             kernel.Bind<IServiciosLocalidad>().To<ServiciosLocalidad>().InRequestScope();
             kernel.Bind<IRepositorioLocalidades>().To<RepositorioLocalidades>().InRequestScope();
 
+            kernel.Bind<IServiciosCliente>().To<ServiciosCliente>().InRequestScope();
+            kernel.Bind<IRepositorioClientes>().To<RepositorioClientes>().InRequestScope();
+
+            kernel.Bind<IServiciosEmpleado>().To<ServiciosEmpleado>().InRequestScope();
+            kernel.Bind<IRepositorioEmpleados>().To<RepositorioEmpleados>().InRequestScope();
+
+            kernel.Bind<IServiciosMascota>().To<ServiciosMascota>().InRequestScope();
+            kernel.Bind<IRepositorioMascotas>().To<RepositorioMascotas>().InRequestScope();
+
+            kernel.Bind<IServiciosMedicamento>().To<ServiciosMedicamento>().InRequestScope();
+            kernel.Bind<IRepositorioMedicamentos>().To<RepositorioMedicamentos>().InRequestScope();
+
+            kernel.Bind<IServiciosProveedor>().To<ServiciosProveedor>().InRequestScope();
+            kernel.Bind<IRepositorioProveedores>().To<RepositorioProveedores>().InRequestScope();
+
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             kernel.Bind(typeof(VeterinariaEdiMvc2021DbContext)).ToSelf().InSingletonScope();
         }

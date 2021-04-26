@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios;
@@ -27,10 +29,14 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: Localidades
-        public ActionResult Index()
+        public ActionResult Index(int? page=null)
         {
-            var listaDto = _servicio.GetLista();
-            var listaVm = _mapper.Map<List<LocalidadListViewModel>>(listaDto);
+            page = (page ?? 1);
+            var listaDto = _servicio.GetLista(null);
+            var listaVm = _mapper.Map<List<LocalidadListViewModel>>(listaDto)
+                .OrderBy(c => c.NombreLocalidad)
+                .ThenBy(c => c.Provincia)
+                .ToPagedList((int)page, 5);
             return View(listaVm);
         }
 
@@ -139,12 +145,14 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LocalidadListDto localidadDto = _mapper.Map<LocalidadListDto>(_servicio.GetLocalidadPorId(id));
+            //LocalidadListDto localidadDto = _mapper.Map<LocalidadListDto>(_servicio.GetLocalidadPorId(id));
+            var localidadDto = _servicio.GetLocalidadPorId(id);
             if (localidadDto == null)
             {
                 return HttpNotFound("Còdigo de Localidad inexistente...");
             }
             LocalidadListViewModel localidadVm = _mapper.Map<LocalidadListViewModel>(localidadDto);
+            localidadVm.Provincia = (_servicioProvincias.GetProvinciaPorId(localidadDto.ProvinciaId)).NombreProvincia;
             return View(localidadVm);
         }
 
@@ -153,15 +161,15 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
 
         public ActionResult Delete(LocalidadListViewModel localidadVm)
         {
-            //LocalidadEditDto localidadDto = _mapper.Map<LocalidadEditDto>(localidadVm);
-            //if (_servicio.EstaRelacionado(localidadDto))
-            //{
-            //    ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
-            //    return View(localidadVm);
-            //}
+            LocalidadEditDto localidadDto = _mapper.Map<LocalidadEditDto>(localidadVm);
+            if (_servicio.EstaRelacionado(localidadDto))
+            {
+                ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
+                return View(localidadVm);
+            }
             try
             {
-                LocalidadListDto localidadDto = _mapper.Map<LocalidadListDto>(_servicio.GetLocalidadPorId(localidadVm.LocalidadId));
+                LocalidadListDto locDto = _mapper.Map<LocalidadListDto>(_servicio.GetLocalidadPorId(localidadVm.LocalidadId));
                 localidadVm = _mapper.Map<LocalidadListViewModel>(_servicio.GetLocalidadPorId(localidadVm.LocalidadId));
                 _servicio.Borrar(localidadVm.LocalidadId);
                 TempData["Msg"] = "Registro Borrado...";

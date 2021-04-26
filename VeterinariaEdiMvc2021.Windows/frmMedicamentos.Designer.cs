@@ -40,7 +40,15 @@
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbCerrar = new System.Windows.Forms.ToolStripButton();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.cmnNombreComercial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnTipoDeMedicamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnFormaFarmaceutica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnLaboratorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnPrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnSuspendido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -72,6 +80,7 @@
             this.tsbNuevo.Text = "Nuevo";
             this.tsbNuevo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
             // 
             // tsbBorrar
             // 
@@ -84,6 +93,7 @@
             this.tsbBorrar.Text = "Borrar";
             this.tsbBorrar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbBorrar.Click += new System.EventHandler(this.tsbBorrar_Click);
             // 
             // tsbEditar
             // 
@@ -96,6 +106,7 @@
             this.tsbEditar.Text = "Editar";
             this.tsbEditar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -113,6 +124,7 @@
             this.tsbBuscar.Text = "Buscar";
             this.tsbBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbBuscar.Click += new System.EventHandler(this.tsbBuscar_Click);
             // 
             // tsbActualizar
             // 
@@ -125,6 +137,7 @@
             this.tsbActualizar.Text = "Actualizar";
             this.tsbActualizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -161,18 +174,85 @@
             this.tsbCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbCerrar.Click += new System.EventHandler(this.tsbCerrar_Click);
             // 
+            // dgvDatos
+            // 
+            this.dgvDatos.AllowUserToAddRows = false;
+            this.dgvDatos.AllowUserToDeleteRows = false;
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmnNombreComercial,
+            this.cmnTipoDeMedicamento,
+            this.cmnFormaFarmaceutica,
+            this.cmnLaboratorio,
+            this.cmnPrecioVenta,
+            this.cmnSuspendido});
+            this.dgvDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDatos.Location = new System.Drawing.Point(0, 62);
+            this.dgvDatos.MultiSelect = false;
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.RowHeadersVisible = false;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDatos.Size = new System.Drawing.Size(814, 469);
+            this.dgvDatos.TabIndex = 12;
+            // 
+            // cmnNombreComercial
+            // 
+            this.cmnNombreComercial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnNombreComercial.HeaderText = "Nombre Comercial";
+            this.cmnNombreComercial.Name = "cmnNombreComercial";
+            this.cmnNombreComercial.ReadOnly = true;
+            // 
+            // cmnTipoDeMedicamento
+            // 
+            this.cmnTipoDeMedicamento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnTipoDeMedicamento.HeaderText = "Tipo de Medicamento";
+            this.cmnTipoDeMedicamento.Name = "cmnTipoDeMedicamento";
+            this.cmnTipoDeMedicamento.ReadOnly = true;
+            // 
+            // cmnFormaFarmaceutica
+            // 
+            this.cmnFormaFarmaceutica.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnFormaFarmaceutica.HeaderText = "Forma Farmacèutica";
+            this.cmnFormaFarmaceutica.Name = "cmnFormaFarmaceutica";
+            this.cmnFormaFarmaceutica.ReadOnly = true;
+            // 
+            // cmnLaboratorio
+            // 
+            this.cmnLaboratorio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnLaboratorio.HeaderText = "Laboratorio";
+            this.cmnLaboratorio.Name = "cmnLaboratorio";
+            this.cmnLaboratorio.ReadOnly = true;
+            // 
+            // cmnPrecioVenta
+            // 
+            this.cmnPrecioVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnPrecioVenta.HeaderText = "Precio de Venta";
+            this.cmnPrecioVenta.Name = "cmnPrecioVenta";
+            this.cmnPrecioVenta.ReadOnly = true;
+            // 
+            // cmnSuspendido
+            // 
+            this.cmnSuspendido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnSuspendido.HeaderText = "Suspendido";
+            this.cmnSuspendido.Name = "cmnSuspendido";
+            this.cmnSuspendido.ReadOnly = true;
+            // 
             // frmMedicamentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 531);
             this.ControlBox = false;
+            this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmMedicamentos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Medicamentos";
+            this.Load += new System.EventHandler(this.frmMedicamentos_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +270,12 @@
         private System.Windows.Forms.ToolStripButton tsbImprimir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbCerrar;
+        private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnNombreComercial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnTipoDeMedicamento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnFormaFarmaceutica;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnLaboratorio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnPrecioVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnSuspendido;
     }
 }

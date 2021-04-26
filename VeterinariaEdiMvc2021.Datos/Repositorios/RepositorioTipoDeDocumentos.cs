@@ -36,14 +36,34 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public bool EstaRelacionado(TipoDeDocumento tipoDeDocumento)
+        {
+            try
+            {
+                return _context.Clientes.Any(td => td.TipoDeDocumentoId == tipoDeDocumento.TipoDeDocumentoId);
+                //return _context.Empleados.Any(td => td.TipoDeDocumentoId == tipoDeDocumento.TipoDeDocumentoId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si està relacionado un Tipo de Documento");
+            }
+        }
+
         public bool Existe(TipoDeDocumento tipoDeDocumento)
         {
-            if (tipoDeDocumento.TipoDeDocumentoId == 0)
+            try
             {
-                return _context.TipoDeDocumentos.Any(td => td.Descripcion == tipoDeDocumento.Descripcion);
-            }
+                if (tipoDeDocumento.TipoDeDocumentoId == 0)
+                {
+                    return _context.TipoDeDocumentos.Any(td => td.Descripcion == tipoDeDocumento.Descripcion);
+                }
 
-            return _context.TipoDeDocumentos.Any(td => td.Descripcion == tipoDeDocumento.Descripcion && td.TipoDeDocumentoId == tipoDeDocumento.TipoDeDocumentoId);
+                return _context.TipoDeDocumentos.Any(td => td.Descripcion == tipoDeDocumento.Descripcion && td.TipoDeDocumentoId == tipoDeDocumento.TipoDeDocumentoId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe un Tipo de Documento");
+            }
         }
 
         public TipoDeDocumentoEditDto GetipoDeDocumentoPorId(int? id)

@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(FormaFarmaceutica formaFarmaceutica);
         void Borrar(int? id);
         bool Existe(FormaFarmaceutica formaFarmaceutica);
+        bool EstaRelacionado(FormaFarmaceutica formaFarmaceutica);
     }
 }

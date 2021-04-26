@@ -1,9 +1,14 @@
 ﻿using AutoMapper;
 using System;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Cliente;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Droga;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Empleado;
 using VeterinariaEdiMvc2021.Entidades.DTOs.FormaFarmaceutica;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Laboratorio;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Localidad;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Mascota;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Medicamento;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Proveedor;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Provincia;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Raza;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeDocumento;
@@ -12,10 +17,16 @@ using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeMedicamento;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeServicio;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeTarea;
 using VeterinariaEdiMvc2021.Entidades.Entidades;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Carrito;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Cliente;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Droga;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Empleado;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.FormaFarmaceutica;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Laboratorio;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Mascota;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Medicamento;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Proveedor;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Provincia;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Raza;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeDocumento;
@@ -41,10 +52,70 @@ namespace VeterinariaEdiMvc2021.Mapeador
             LoadFormaFarmaceuticaMapping();
             LoadLocalidadMapping();
             LoadRazaMapping();
+            LoadClienteMapping();
+            LoadEmpleadoMapping();
+            LoadMascotaMapping();
+            LoadMedicamentoMapping();
+            LoadProveedor();
+            LoadCarritoMapping();
+        }
+
+        private void LoadCarritoMapping()
+        {
+            CreateMap<ItemCarrito, ItemCarritoListViewModel>()
+                .ForMember(dest => dest.MedicamentoListViewModel, act => act.MapFrom(src => src.Medicamento));
+            CreateMap<Medicamento, MedicamentoListViewModel>()
+                .ForMember(dest => dest.TipoDeMedicamento, act => act.MapFrom(src => src.TipoDeMedicamento.Descripcion));
+        }
+
+        private void LoadProveedor()
+        {
+            CreateMap<ProveedorEditDto, ProveedorListViewModel>();
+            CreateMap<ProveedorListDto, ProveedorListViewModel>().ReverseMap();
+            CreateMap<ProveedorEditViewModel, ProveedorEditDto>().ReverseMap();
+            CreateMap<ProveedorEditDto, Proveedor>().ReverseMap();
+            CreateMap<ProveedorEditDto, ProveedorListDto>().ReverseMap();
+        }
+
+        private void LoadMedicamentoMapping()
+        {
+            CreateMap<MedicamentoEditDto, MedicamentoListViewModel>();
+            CreateMap<MedicamentoListDto, MedicamentoListViewModel>().ReverseMap();
+            CreateMap<MedicamentoEditViewModel, MedicamentoEditDto>().ReverseMap();
+            CreateMap<MedicamentoEditDto, Medicamento>().ReverseMap();
+            CreateMap<MedicamentoEditDto, MedicamentoListDto>().ReverseMap();
+        }
+
+        private void LoadMascotaMapping()
+        {
+            CreateMap<MascotaEditDto, MascotaListViewModel>();
+            CreateMap<MascotaListDto, MascotaListViewModel>().ReverseMap();
+            CreateMap<MascotaEditViewModel, MascotaEditDto>().ReverseMap();
+            CreateMap<MascotaEditDto, Mascota>().ReverseMap();
+            CreateMap<MascotaEditDto, MascotaListDto>().ReverseMap();
+        }
+
+        private void LoadEmpleadoMapping()
+        {
+            CreateMap<EmpleadoEditDto, EmpleadoListViewModel>();
+            CreateMap<EmpleadoListDto, EmpleadoListViewModel>().ReverseMap();
+            CreateMap<EmpleadoEditViewModel, EmpleadoEditDto>().ReverseMap();
+            CreateMap<EmpleadoEditDto, Empleado>().ReverseMap();
+            CreateMap<EmpleadoEditDto, EmpleadoListDto>().ReverseMap();
+        }
+
+        private void LoadClienteMapping()
+        {
+            CreateMap<ClienteEditDto, ClienteListViewModel>();
+            CreateMap<ClienteListDto, ClienteListViewModel>().ReverseMap();
+            CreateMap<ClienteEditViewModel, ClienteEditDto>().ReverseMap();
+            CreateMap<ClienteEditDto, Cliente>().ReverseMap();
+            CreateMap<ClienteEditDto, ClienteListDto>().ReverseMap();
         }
 
         private void LoadRazaMapping()
         {
+            CreateMap<RazaEditDto, RazaListViewModel>();
             CreateMap<RazaListDto, RazaListViewModel>().ReverseMap();
             CreateMap<RazaEditViewModel, RazaEditDto>().ReverseMap();
             CreateMap<RazaEditDto, Raza>().ReverseMap();
@@ -53,10 +124,12 @@ namespace VeterinariaEdiMvc2021.Mapeador
 
         private void LoadLocalidadMapping()
         {
+            CreateMap<LocalidadEditDto, LocalidadListViewModel>();
             CreateMap<LocalidadListDto, LocalidadListViewModel>().ReverseMap();
             CreateMap<LocalidadEditViewModel, LocalidadEditDto>().ReverseMap();
             CreateMap<LocalidadEditDto, Localidad>().ReverseMap();
             CreateMap<LocalidadEditDto, LocalidadListDto>().ReverseMap();
+            CreateMap<Localidad, LocalidadListViewModel>().ForMember(dest => dest.Provincia, act => act.MapFrom(src => src.Provincia.NombreProvincia));
         }
 
         private void LoadFormaFarmaceuticaMapping()
@@ -93,6 +166,9 @@ namespace VeterinariaEdiMvc2021.Mapeador
             CreateMap<ProvinciaListDto, ProvinciaListViewModel>().ReverseMap();
             CreateMap<ProvinciaEditDto, ProvinciaEditViewModel>().ReverseMap();
             CreateMap<ProvinciaEditDto, ProvinciaListDto>().ReverseMap();
+            CreateMap<ProvinciaCantidadListDto, ProvinciaCantidadListViewModel>();
+            CreateMap<ProvinciaDetailsDto, ProvinciaDetailsViewModel>().ForMember(dest => dest.Localidades, act => act.MapFrom(src => src.Localidades)); 
+
         }
 
         private void LoadTipoDeDocumentoMapping()

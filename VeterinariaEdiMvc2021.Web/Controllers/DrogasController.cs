@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios;
@@ -22,10 +24,13 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: Drogas
-        public ActionResult Index()
+        public ActionResult Index(int? page=null)
         {
+            page = (page ?? 1);
             var listaDto = _servicio.GetLista();
-            var listaVm = _mapper.Map<List<DrogaListViewModel>>(listaDto);
+            var listaVm = _mapper.Map<List<DrogaListViewModel>>(listaDto)
+                .OrderBy(c => c.NombreDroga)
+                .ToPagedList((int)page, 5);
             return View(listaVm);
         }
 
@@ -82,6 +87,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 return HttpNotFound("Còdigo de droga inexistente...");
             }
             DrogaEditViewModel drogaVm = _mapper.Map<DrogaEditViewModel>(drogaDto);
+
             return View(drogaVm);
         }
 
@@ -90,6 +96,12 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
 
         public ActionResult Delete (DrogaEditViewModel drogaVm) 
         {
+            DrogaEditDto drogaDto = _mapper.Map<DrogaEditDto>(drogaVm);
+            //if (_servicio.EstaRelacionado(drogaDto))
+            //{
+            //    ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
+            //    return View(drogaVm);
+            //}
             try
             {
                 drogaVm = _mapper.Map<DrogaEditViewModel>(_servicio.GetDrogaPorId(drogaVm.DrogaId));

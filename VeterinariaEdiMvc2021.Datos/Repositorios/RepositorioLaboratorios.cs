@@ -35,14 +35,33 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public bool EstaRelacionado(Laboratorio laboratorio)
+        {
+            try
+            {
+                return _context.Medicamentos.Any(l => l.LaboratorioId == laboratorio.LaboratorioId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si està relacionado un Laboratorio");
+            }
+        }
+
         public bool Existe(Laboratorio laboratorio)
         {
-            if (laboratorio.LaboratorioId == 0)
+            try
             {
-                return _context.Laboratorios.Any(la => la.Nombre == laboratorio.Nombre);
-            }
+                if (laboratorio.LaboratorioId == 0)
+                {
+                    return _context.Laboratorios.Any(la => la.Nombre == laboratorio.Nombre);
+                }
 
-            return _context.Laboratorios.Any(la => la.Nombre == laboratorio.Nombre && la.LaboratorioId == laboratorio.LaboratorioId);
+                return _context.Laboratorios.Any(la => la.Nombre == laboratorio.Nombre && la.LaboratorioId == laboratorio.LaboratorioId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe un Laboratorio");
+            }
         }
 
         public LaboratorioEditDto GetLaboratorioPorId(int? id)

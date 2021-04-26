@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(TipoDeTarea tipoDeTarea);
         void Borrar(int? id);
         bool Existe(TipoDeTarea tipoDeTarea);
+        bool EstaRelacionado(TipoDeTarea tipoDeTarea);
     }
 }

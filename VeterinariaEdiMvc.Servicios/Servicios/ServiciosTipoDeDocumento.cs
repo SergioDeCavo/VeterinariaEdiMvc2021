@@ -38,6 +38,20 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        public bool EstaRelacionado(TipoDeDocumentoEditDto tipoDocDto)
+        {
+            try
+            {
+                TipoDeDocumento tipoDeDocumento = _mapper.Map<TipoDeDocumento>(tipoDocDto);
+                return _repositorio.EstaRelacionado(tipoDeDocumento);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
         public bool Existe(TipoDeDocumentoEditDto tipoDeDocumentoDto)
         {
             try

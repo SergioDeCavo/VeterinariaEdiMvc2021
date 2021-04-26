@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc.Servicios.Servicios.Facades
         void Guardar(FormaFarmaceuticaEditDto formaFarmaceutica);
         void Borrar(int? id);
         bool Existe(FormaFarmaceuticaEditDto formaFarmaceutica);
+        bool EstaRelacionado(FormaFarmaceuticaEditDto formaFarmaceuticaDto);
     }
 }

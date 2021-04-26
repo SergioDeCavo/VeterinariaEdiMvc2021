@@ -5,7 +5,7 @@ namespace VeterinariaEdiMvc.Servicios.Servicios.Facades
 {
     public interface IServiciosLocalidad
     {
-        List<LocalidadListDto> GetLista();
+        List<LocalidadListDto> GetLista(string nombreProvincia);
         bool Existe(LocalidadEditDto localidadEditDto);
         void Guardar(LocalidadEditDto localidadDto);
         LocalidadEditDto GetLocalidadPorId(int? id);

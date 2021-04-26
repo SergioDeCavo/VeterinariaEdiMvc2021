@@ -38,12 +38,19 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
 
         public bool Existe(Droga droga)
         {
-            if (droga.DrogaId == 0)
+            try
             {
-                return _context.Drogas.Any(dr => dr.NombreDroga == droga.NombreDroga);
-            }
+                if (droga.DrogaId == 0)
+                {
+                    return _context.Drogas.Any(dr => dr.NombreDroga == droga.NombreDroga);
+                }
 
-            return _context.Drogas.Any(dr => dr.NombreDroga == droga.NombreDroga && dr.DrogaId == droga.DrogaId);
+                return _context.Drogas.Any(dr => dr.NombreDroga == droga.NombreDroga && dr.DrogaId == droga.DrogaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe una Droga");
+            }
         }
 
         public DrogaEditDto GetDrogaPorId(int? id)

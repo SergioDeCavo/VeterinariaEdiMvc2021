@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(Laboratorio laboratorio);
         void Borrar(int? id);
         bool Existe(Laboratorio laboratorio);
+        bool EstaRelacionado(Laboratorio laboratorio);
     }
 }

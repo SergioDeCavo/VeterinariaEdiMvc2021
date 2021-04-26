@@ -90,7 +90,7 @@
             this.Controls.Add(this.btnOK);
             this.Name = "frmBuscarProvincias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Buscar Provincias...";
+            this.Text = "Buscar Provincia...";
             this.Load += new System.EventHandler(this.frmBuscarProvincias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

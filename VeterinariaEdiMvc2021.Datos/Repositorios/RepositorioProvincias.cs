@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeterinariaEdiMvc2021.Datos.Repositorios.Facades;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Localidad;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Provincia;
 using VeterinariaEdiMvc2021.Entidades.Entidades;
 
@@ -78,6 +79,45 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             catch (Exception ex)
             {
 
+                throw new Exception("Error al intentar leer las Provincias");
+            }
+        }
+
+        public ProvinciaDetailsDto GetDetalle(int? id) 
+        {
+            try
+            {
+                var provinciaDto = _context.Provincias.GroupJoin(_context.Localidades, p => p.ProvinciaId, l => l.ProvinciaId, (provincia, localidad) => new ProvinciaDetailsDto
+                {
+                    ProvinciaId = provincia.ProvinciaId,
+                    NombreProvincia = provincia.NombreProvincia,
+                    //Localidadades = _mapper.Map<List<LocalidadListDto>>(localidad)
+                    Localidades = localidad.ToList()
+                }).SingleOrDefault(p => p.ProvinciaId == id);
+                return provinciaDto;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al intentar leer las Provincias");
+            }
+        }
+
+        public List<ProvinciaCantidadListDto> GetListaProvinciaConCantidad()
+        {
+            try
+            {
+                var lista = _context.Provincias
+                    .GroupJoin(_context.Localidades, p => p.ProvinciaId, l => l.ProvinciaId, (provincia, localidad) => new ProvinciaCantidadListDto
+                {
+                    ProvinciaId = provincia.ProvinciaId,
+                    NombreProvincia = provincia.NombreProvincia,
+                    CantidadProvincias = localidad.Count()
+                })
+                .ToList();
+                return lista;
+            }
+            catch (Exception)
+            {
                 throw new Exception("Error al intentar leer las Provincias");
             }
         }

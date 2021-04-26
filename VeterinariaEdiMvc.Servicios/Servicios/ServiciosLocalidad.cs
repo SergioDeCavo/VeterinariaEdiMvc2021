@@ -55,11 +55,11 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
-        public List<LocalidadListDto> GetLista()
+        public List<LocalidadListDto> GetLista(string nombreProvincia)
         {
             try
             {
-                return _repositorio.GetLista();
+                return _repositorio.GetLista(nombreProvincia);
             }
             catch (Exception e)
             {

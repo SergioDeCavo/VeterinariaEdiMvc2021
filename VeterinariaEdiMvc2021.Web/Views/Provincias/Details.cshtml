@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<VeterinariaEdiMvc2021.Entidades.ViewModels.Provincia.ProvinciaDetailsViewModel>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Detalles</h2>
+<div>
+    <h4>Provincia</h4>
+    <hr />
+    <dl class="dl-Horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.First().NombreProvincia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.First().NombreProvincia)
+        </dd>
+    </dl>
+    @Html.Partial("_ListaLocalidades", Model.First().Localidades)
+    <p>
+        @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" })
+    </p>
+
+    @*<table class="Table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Localidades[0].NombreLocalidad)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Localidades[0].Provincia)
+                </th>
+            </tr>
+            @foreach (var item in Model.Localidades)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.NombreLocalidad)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelitem => item.Provincia)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.LocalidadId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.LocalidadId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.LocalidadId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+            }
+        </table>*@
+</div>
+@*<p>
+    @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" })*@
+@*</p>*@
+Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page
+}))

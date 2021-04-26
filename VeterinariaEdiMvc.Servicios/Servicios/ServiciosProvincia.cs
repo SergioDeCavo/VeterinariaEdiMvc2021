@@ -66,11 +66,39 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        public ProvinciaDetailsDto GetDetalle(int? id)
+        {
+            try
+            {
+                return _repositorio.GetDetalle(id);
+                //return _mapper.Map<List<ProvinciaListDto>>(lista);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Error");
+            }
+        }
+
         public List<ProvinciaListDto> GetLista()
         {
             try
             {
                 return _repositorio.GetLista();
+                //return _mapper.Map<List<ProvinciaListDto>>(lista);
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Error");
+            }
+        }
+
+        public List<ProvinciaCantidadListDto> GetListaProvinciaConCantidad()
+        {
+            try
+            {
+                return _repositorio.GetListaProvinciaConCantidad();
                 //return _mapper.Map<List<ProvinciaListDto>>(lista);
             }
             catch (Exception)

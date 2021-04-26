@@ -12,5 +12,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Borrar(int? id);
         bool Existe(Provincia provincia);
         bool EstaRelacionado(Provincia provincia);
+        List<ProvinciaCantidadListDto> GetListaProvinciaConCantidad();
+        ProvinciaDetailsDto GetDetalle(int? id);
     }
 }

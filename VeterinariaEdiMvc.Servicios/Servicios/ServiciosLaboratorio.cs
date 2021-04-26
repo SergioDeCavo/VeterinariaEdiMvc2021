@@ -38,6 +38,20 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        public bool EstaRelacionado(LaboratorioEditDto laboratorioDto)
+        {
+            try
+            {
+                Laboratorio laboratorio = _mapper.Map<Laboratorio>(laboratorioDto);
+                return _repositorio.EstaRelacionado(laboratorio);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
         public bool Existe(LaboratorioEditDto laboratorioDto)
         {
             try

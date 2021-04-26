@@ -36,14 +36,33 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        //public bool EstaRelacionado(TipoDeServicio tipoDeServicio)
+        //{
+        //    try
+        //    {
+                
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new Exception("Error al verificar si està relacionado un Tipo de Servicio");
+        //    }
+        //}
+
         public bool Existe(TipoDeServicio tipoDeServicio)
         {
-            if (tipoDeServicio.TipoDeServicioId == 0)
+            try
             {
-                return _context.TipoDeServicios.Any(ts => ts.Descripcion == tipoDeServicio.Descripcion);
-            }
+                if (tipoDeServicio.TipoDeServicioId == 0)
+                {
+                    return _context.TipoDeServicios.Any(ts => ts.Descripcion == tipoDeServicio.Descripcion);
+                }
 
-            return _context.TipoDeServicios.Any(ts => ts.Descripcion == tipoDeServicio.Descripcion && ts.TipoDeServicioId == tipoDeServicio.TipoDeServicioId);
+                return _context.TipoDeServicios.Any(ts => ts.Descripcion == tipoDeServicio.Descripcion && ts.TipoDeServicioId == tipoDeServicio.TipoDeServicioId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe un Tipo de Servicio");
+            }
         }
 
         public TipoDeServicioEditDto GetipoDeServicioPorId(int? id)
@@ -66,7 +85,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
                 var lista= _context.TipoDeServicios.ToList();
                 return _mapper.Map<List<TipoDeServicioListDto>>(lista);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error al intentar leer los Tipos de Servicios");
@@ -97,9 +116,5 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
-        List<TipoDeServicioListDto> IRepositorioTipoDeServicios.GetLista()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

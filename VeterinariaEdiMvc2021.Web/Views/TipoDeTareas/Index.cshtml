@@ -1,5 +1,5 @@
-﻿@model IEnumerable<VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeTarea.TipoDeTareaListViewModel>
-
+﻿@model PagedList.IPagedList<VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeTarea.TipoDeTareaListViewModel>
+@using PagedList.Mvc
 @{ ViewBag.Title = "Index"; }
 <div>
     <a href="@Url.Action("Create","TipoDeTareas")" class="btn btn-primary" style="float: right">Nuevo</a>
@@ -17,7 +17,7 @@
 <table class="table table-bordered table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.First().Descripcion)
         </th>
         <th></th>
     </tr>
@@ -30,10 +30,14 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.TipoDeTareaId }, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Detalles", "Details", new { id = item.TipoDeTareaId }, new { @class = "btn btn-info" })
                 @Html.ActionLink("Borrar", "Delete", new { id = item.TipoDeTareaId }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
 
 </table>
+Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page
+}))

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad.LocalidadListViewModel>
+@*@using PagedList.Mvc*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NombreLocalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Provincia)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreLocalidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", "Localidades", new { id = item.LocalidadId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Borrar", "Delete", "Localidades", new { id = item.LocalidadId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+@*Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page
+}))*@

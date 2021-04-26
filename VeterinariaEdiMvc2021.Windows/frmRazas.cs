@@ -58,7 +58,7 @@ namespace VeterinariaEdiMvc2021.Windows
         {
             try
             {
-                lista = _servicio.GetLista();
+                lista = _servicio.GetLista(null);
                 MostrarDatosEnGrilla();
             }
             catch (Exception exception)
@@ -216,7 +216,7 @@ namespace VeterinariaEdiMvc2021.Windows
             var tipoDeMascotaDto = frm.GetTipoDeMascota();
             try
             {
-                lista = _servicio.GetLista();
+                lista = _servicio.GetLista(tipoDeMascotaDto.Descripcion);
                 MostrarDatosEnGrilla();
             }
             catch (Exception exception)

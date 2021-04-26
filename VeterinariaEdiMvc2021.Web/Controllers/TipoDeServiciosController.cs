@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios;
@@ -22,10 +24,13 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: TipoDeServicios
-        public ActionResult Index()
+        public ActionResult Index(int? page=null)
         {
+            page = (page ?? 1);
             var listaDto = _servicio.GetLista();
-            var listaVm = _mapper.Map<List<TipoDeServicioListViewModel>>(listaDto);
+            var listaVm = _mapper.Map<List<TipoDeServicioListViewModel>>(listaDto)
+                .OrderBy(c => c.Descripcion)
+                .ToPagedList((int)page, 5);
             return View(listaVm);
         }
 
@@ -88,6 +93,12 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
 
         public ActionResult Delete(TipoDeServicioEditViewModel tipoSerVm)
         {
+            TipoDeServicioEditDto tipoSerDto = _mapper.Map<TipoDeServicioEditDto>(tipoSerVm);
+            //if (_servicio.EstaRelacionado(tipoSerDto))
+            //{
+            //    ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
+            //    return View(tipoSerVm);
+            //}
             try
             {
                 tipoSerVm = _mapper.Map<TipoDeServicioEditViewModel>(_servicio.GetipoDeServicioPorId(tipoSerVm.TipoDeServicioId));

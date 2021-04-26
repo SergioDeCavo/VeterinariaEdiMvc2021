@@ -16,5 +16,8 @@ namespace VeterinariaEdiMvc.Servicios.Servicios.Facades
         void Borrar(int? id);
         bool Existe(ProvinciaEditDto provincia);
         bool EstaRelacionado(ProvinciaEditDto provinciaDto);
+        List<ProvinciaCantidadListDto> GetListaProvinciaConCantidad();
+        ProvinciaDetailsDto GetDetalle(int? id);
+
     }
 }

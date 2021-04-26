@@ -5,7 +5,7 @@ namespace VeterinariaEdiMvc.Servicios.Servicios.Facades
 {
     public interface IServiciosRaza
     {
-        List<RazaListDto> GetLista();
+        List<RazaListDto> GetLista(string descripcion);
         bool Existe(RazaEditDto razaEditDto);
         void Guardar(RazaEditDto razaDto);
         RazaEditDto GetRazaPorId(int? id);

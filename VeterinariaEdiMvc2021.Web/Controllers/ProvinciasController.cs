@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios;
@@ -13,21 +15,27 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
     public class ProvinciasController : Controller
     {
         private readonly IServiciosProvincia _servicio;
+        private readonly IServiciosLocalidad _servicioLocalidad;
         private readonly IMapper _mapper;
 
-        public ProvinciasController(IServiciosProvincia servicio)
+        public ProvinciasController(IServiciosProvincia servicio, IServiciosLocalidad servicioLocalildad)
         {
             _servicio = servicio;
+            _servicioLocalidad = servicioLocalildad;
             _mapper = Mapeador.Mapeador.CrearMapper();
         }
 
         // GET: Provincias
-        public ActionResult Index()
+        public ActionResult Index(int? page=null)
         {
-            var listaDto = _servicio.GetLista();
-            var listaVm = _mapper.Map<List<ProvinciaListViewModel>>(listaDto);
+            page = (page ?? 1);
+            var listaDto = _servicio.GetListaProvinciaConCantidad();
+            var listaVm = _mapper.Map<List<ProvinciaCantidadListViewModel>>(listaDto)
+                .OrderBy(c => c.NombreProvincia)
+                .ToPagedList((int)page, 5);
             return View(listaVm);
         }
+
 
         [HttpGet]
 

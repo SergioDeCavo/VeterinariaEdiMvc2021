@@ -38,7 +38,16 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
 
         public bool EstaRelacionado(RazaEditDto razaDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Raza raza = _mapper.Map<Raza>(razaDto);
+                return _repositorio.EstaRelacionado(raza);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+
+            }
         }
 
         public bool Existe(RazaEditDto razaEditDto)
@@ -55,11 +64,11 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
-        public List<RazaListDto> GetLista()
+        public List<RazaListDto> GetLista(string tipoDeMascota)
         {
             try
             {
-                return _repositorio.GetLista();
+                return _repositorio.GetLista(tipoDeMascota);
             }
             catch (Exception e)
             {

@@ -37,14 +37,33 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public bool EstaRelacionado(TipoDeTarea tipoDeTarea)
+        {
+            try
+            {
+                return _context.Empleados.Any(tt => tt.TipoDeTareaId == tipoDeTarea.TipoDeTareaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si està relacionado un Tipo de Tarea");
+            }
+        }
+
         public bool Existe(TipoDeTarea tipoDeTarea)
         {
-            if (tipoDeTarea.TipoDeTareaId==0)
+            try
             {
-                return _context.TipoDeTareas.Any(tt => tt.Descripcion == tipoDeTarea.Descripcion);
-            }
+                if (tipoDeTarea.TipoDeTareaId == 0)
+                {
+                    return _context.TipoDeTareas.Any(tt => tt.Descripcion == tipoDeTarea.Descripcion);
+                }
 
-            return _context.TipoDeTareas.Any(tt => tt.Descripcion == tipoDeTarea.Descripcion && tt.TipoDeTareaId == tipoDeTarea.TipoDeTareaId);
+                return _context.TipoDeTareas.Any(tt => tt.Descripcion == tipoDeTarea.Descripcion && tt.TipoDeTareaId == tipoDeTarea.TipoDeTareaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe un Tipo de Tarea");
+            }
         }
 
         public TipoDeTareaEditDto GetipoDeTareaPorId(int? id)
@@ -98,9 +117,5 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
-        List<TipoDeTareaListDto> IRepositorioTipoDeTareas.GetLista()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

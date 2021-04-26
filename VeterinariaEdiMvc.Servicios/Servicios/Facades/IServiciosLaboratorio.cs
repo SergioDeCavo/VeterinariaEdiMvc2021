@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc.Servicios.Servicios.Facades
         void Guardar(LaboratorioEditDto laboratorio);
         void Borrar(int? id);
         bool Existe(LaboratorioEditDto laboratorio);
+        bool EstaRelacionado(LaboratorioEditDto laboratorioDto);
     }
 }

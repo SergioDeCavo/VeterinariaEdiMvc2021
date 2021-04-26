@@ -11,5 +11,6 @@ namespace VeterinariaEdiMvc.Servicios.Servicios.Facades
         void Guardar(TipoDeTareaEditDto tipoDeTarea);
         void Borrar(int? id);
         bool Existe(TipoDeTareaEditDto tipoDeTarea);
+        bool EstaRelacionado(TipoDeTareaEditDto tipoTarDto);
     }
 }

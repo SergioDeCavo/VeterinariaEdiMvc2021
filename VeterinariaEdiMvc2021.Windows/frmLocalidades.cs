@@ -58,7 +58,7 @@ namespace VeterinariaEdiMvc2021.Windows
         {
             try
             {
-                lista = _servicio.GetLista();
+                lista = _servicio.GetLista(null);
                 MostrarDatosEnGrilla();
             }
             catch (Exception exception)
@@ -215,7 +215,7 @@ namespace VeterinariaEdiMvc2021.Windows
             var provinciaDto = frm.GetProvincia();
             try
             {
-                lista = _servicio.GetLista();
+                lista = _servicio.GetLista(provinciaDto.NombreProvincia);
                 MostrarDatosEnGrilla();
             }
             catch (Exception exception)

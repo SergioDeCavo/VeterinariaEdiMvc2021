@@ -36,14 +36,33 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public bool EstaRelacionado(FormaFarmaceutica formaFarmaceutica)
+        {
+            try
+            {
+                return _context.Medicamentos.Any(f => f.FormaFarmaceuticaId == formaFarmaceutica.FormaFarmaceuticaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si està relacionada una Forma Farmacèutica");
+            }
+        }
+
         public bool Existe(FormaFarmaceutica formaFarmaceutica)
         {
-            if (formaFarmaceutica.FormaFarmaceuticaId == 0)
+            try
             {
-                return _context.FormaFarmaceuticas.Any(ff => ff.Descripcion == formaFarmaceutica.Descripcion);
-            }
+                if (formaFarmaceutica.FormaFarmaceuticaId == 0)
+                {
+                    return _context.FormaFarmaceuticas.Any(ff => ff.Descripcion == formaFarmaceutica.Descripcion);
+                }
 
-            return _context.FormaFarmaceuticas.Any(ff => ff.Descripcion == formaFarmaceutica.Descripcion && ff.FormaFarmaceuticaId == formaFarmaceutica.FormaFarmaceuticaId);
+                return _context.FormaFarmaceuticas.Any(ff => ff.Descripcion == formaFarmaceutica.Descripcion && ff.FormaFarmaceuticaId == formaFarmaceutica.FormaFarmaceuticaId);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe una Forma Farmacèutica");
+            }
         }
 
         public FormaFarmaceuticaEditDto GetFormaFarmaceuticaPorId(int? id)

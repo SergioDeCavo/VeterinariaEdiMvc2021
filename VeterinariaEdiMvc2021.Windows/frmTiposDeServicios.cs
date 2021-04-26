@@ -48,21 +48,6 @@ namespace VeterinariaEdiMvc2021.Windows
             this.Close();
         }
 
-        private void frmTiposDeServicios_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                _mapper = VeterinariaEdiMvc2021.Mapeador.Mapeador.CrearMapper();
-                //_servicio = new ServiciosTipoDeServicio();
-                _lista = _servicio.GetLista();
-                MostrarDatosEnGrilla();
-            }
-            catch (Exception exception)
-            {
-
-                throw new Exception(exception.Message);
-            }
-        }
 
         private void MostrarDatosEnGrilla()
         {
@@ -131,7 +116,7 @@ namespace VeterinariaEdiMvc2021.Windows
             }
             var r = dgvDatos.SelectedRows[0];
             var tipoSerDto = r.Tag as TipoDeServicioListDto;
-            DialogResult dr = MessageBox.Show($"Desea dar de baja el registro {tipoSerDto.TipoDeServicioId}",
+            DialogResult dr = MessageBox.Show($"Desea dar de baja el registro {tipoSerDto.Descripcion}",
                 "Confirmar baja",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -192,6 +177,22 @@ namespace VeterinariaEdiMvc2021.Windows
                 MessageBox.Show(exception.Message, "Error",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void frmTiposDeServicios_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                _mapper = VeterinariaEdiMvc2021.Mapeador.Mapeador.CrearMapper();
+                //_servicio = new ServiciosTipoDeServicio();
+                _lista = _servicio.GetLista();
+                MostrarDatosEnGrilla();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error");
             }
         }
     }

@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<VeterinariaEdiMvc2021.Entidades.ViewModels.Medicamento.MedicamentoListViewModel>
+@using PagedList.Mvc
+@{ ViewBag.Title = "Index"; }
+<div>
+    <a href="@Url.Action("Create","Medicamentos")" class="btn btn-primary" style="float: right">Nuevo</a>
+    <h2>Lista de Medicamentos</h2>
+
+</div>
+@if (TempData["Msg"] != null)
+{
+    var msg = TempData["Msg"].ToString();
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Éxito!</strong> @msg
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NombreComercial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TipoDeMedicamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().PrecioVenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Suspendido)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreComercial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDeMedicamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suspendido)
+            </td>
+            <td>
+                @using (Html.BeginForm("AgregarAlCarrito", "Carrito"))
+                {
+                    <div class="pull-right">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.MedicamentoId }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Detalles", "Details", new { id = item.MedicamentoId }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("borrar", "Delete", new { id = item.MedicamentoId }, new { @class = "btn btn-danger" })
+                        @Html.HiddenFor(modelitem => item.MedicamentoId)
+                        @Html.Hidden("medicamentoId", item.MedicamentoId)
+                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                        <input type="submit" class="btn btn-default" value="Agregar" />
+                    </div>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+    Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page
+    }))

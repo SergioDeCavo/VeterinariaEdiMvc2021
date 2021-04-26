@@ -53,6 +53,20 @@ namespace VeterinariaEdiMvc2021.Windows.Ninject
             Bind<IRepositorioRazas>().To<RepositorioRazas>();
             Bind<IServiciosRaza>().To<ServiciosRaza>();
 
+            Bind<IRepositorioClientes>().To<RepositorioClientes>();
+            Bind<IServiciosCliente>().To<ServiciosCliente>();
+
+            Bind<IRepositorioEmpleados>().To<RepositorioEmpleados>();
+            Bind<IServiciosEmpleado>().To<ServiciosEmpleado>();
+
+            Bind<IRepositorioMascotas>().To<RepositorioMascotas>();
+            Bind<IServiciosMascota>().To<ServiciosMascota>();
+
+            Bind<IRepositorioMedicamentos>().To<RepositorioMedicamentos>();
+            Bind<IServiciosMedicamento>().To<ServiciosMedicamento>();
+
+            Bind<IRepositorioProveedores>().To<RepositorioProveedores>();
+            Bind<IServiciosProveedor>().To<ServiciosProveedor>();
         }
     }
 }

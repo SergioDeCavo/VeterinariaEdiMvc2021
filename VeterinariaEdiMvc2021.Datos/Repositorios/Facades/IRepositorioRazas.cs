@@ -6,10 +6,11 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
 {
     public interface IRepositorioRazas
     {
-        List<RazaListDto> GetLista();
+        List<RazaListDto> GetLista(string tipo);
         bool Existe(Raza raza);
         void Guardar(Raza raza);
         RazaEditDto GetRazaPorId(int? id);
         void Borrar(int razaId);
+        bool EstaRelacionado(Raza raza);
     }
 }

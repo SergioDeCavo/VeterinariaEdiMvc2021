@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios;
@@ -22,10 +24,13 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: Laboratorios
-        public ActionResult Index()
+        public ActionResult Index(int? page=null)
         {
+            page = (page ?? 1);
             var listaDto = _servicio.GetLista();
-            var listaVm = _mapper.Map<List<LaboratorioListViewModel>>(listaDto);
+            var listaVm = _mapper.Map<List<LaboratorioListViewModel>>(listaDto)
+                .OrderBy(c => c.Nombre)
+                .ToPagedList((int)page, 5);
             return View(listaVm);
         }
 
@@ -88,6 +93,12 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
 
         public ActionResult Delete(LaboratorioEditViewModel laboratorioVm)
         {
+            LaboratorioEditDto laboratorioDto = _mapper.Map<LaboratorioEditDto>(laboratorioVm);
+            if (_servicio.EstaRelacionado(laboratorioDto))
+            {
+                ModelState.AddModelError(string.Empty, "Registro relacionado con otra tabla...Baja denegada");
+                return View(laboratorioVm);
+            }
             try
             {
                 laboratorioVm = _mapper.Map<LaboratorioEditViewModel>(_servicio.GetLaboratorioPorId(laboratorioVm.LaboratorioId));

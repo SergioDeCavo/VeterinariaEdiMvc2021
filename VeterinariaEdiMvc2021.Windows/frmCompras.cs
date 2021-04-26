@@ -12,21 +12,6 @@ namespace VeterinariaEdiMvc2021.Windows
 {
     public partial class frmCompras : Form
     {
-        private static frmCompras instancia;
-        public static frmCompras GetInstancia()
-        {
-            if (instancia == null)
-            {
-                instancia = new frmCompras();
-                instancia.FormClosed += Form_Closed;
-            }
-            return instancia;
-        }
-
-        private static void Form_Closed(object sender, FormClosedEventArgs e)
-        {
-            instancia = null;
-        }
         public frmCompras()
         {
             InitializeComponent();

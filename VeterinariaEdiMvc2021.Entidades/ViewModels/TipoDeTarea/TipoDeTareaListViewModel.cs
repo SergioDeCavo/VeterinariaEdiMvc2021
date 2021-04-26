@@ -6,7 +6,7 @@ namespace VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeTarea
     {
         public int TipoDeTareaId { get; set; }
 
-        [Display(Name="Descripciòn")]
+        [Display(Name = "Descripciòn")]
         public string Descripcion { get; set; }
     }
 }

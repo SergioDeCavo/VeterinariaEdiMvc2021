@@ -1,0 +1,83 @@
+﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Empleado.EmpleadoListViewModel
+
+@{ ViewBag.Title = "Delete"; }
+<div>
+    <h2>Borre un Empleado</h2>
+
+</div>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+
+<body>
+    <h3>Està seguro de borrar este registro?</h3>
+    <div>
+        <h4>Empleado</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Empleado)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Apellido)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoDeTarea)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoDeTarea)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Direccion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TelefonoMovil)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TelefonoMovil)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Localidad)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.EmpleadoId)
+            @Html.ValidationSummary(true, "", new { @class = "text-Danger" });
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Borrar" class="btn btn-danger" /> |
+                @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" });
+            </div>
+        }
+    </div>
+</body>
+</html>

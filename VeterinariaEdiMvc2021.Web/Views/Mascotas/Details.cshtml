@@ -1,0 +1,64 @@
+﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Mascota.MascotaEditViewModel
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Detalle de Cliente</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <body>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TipoDeMascotaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.TipoDeMascotaId, new SelectList(Model.TipoDeMascota, "TipoDeMascotaId", "Descripcion"), new { disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.TipoDeMascotaId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RazaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.RazaId, new SelectList(Model.Raza, "RazaId", "Descripcion"), new { disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.RazaId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.ClienteId, new SelectList(Model.Cliente, "ClienteId", "Cliente"), new { disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.Nombre, new { htmlAttributes = new { @class = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FechaDeNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => model.FechaDeNacimiento, new { htmlAttributes = new { @class = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.FechaDeNacimiento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" })
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+    </div>
+}

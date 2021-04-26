@@ -31,5 +31,11 @@ namespace VeterinariaEdiMvc2021.Datos
         public DbSet<TipoDeTarea> TipoDeTareas { get; set; }
         public DbSet<Localidad> Localidades { get; set; }
         public DbSet<Raza> Razas { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Mascota> Mascotas { get; set; }
+        public DbSet<Medicamento> Medicamentos { get; set; }
+        public DbSet<Proveedor> Proveedores { get; set; }
+
     }
 }

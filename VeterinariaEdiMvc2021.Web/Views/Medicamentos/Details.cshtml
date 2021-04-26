@@ -1,0 +1,101 @@
+﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Medicamento.MedicamentoEditViewModel
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+    <h4>Detalle de Cliente</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <body>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreComercial, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.NombreComercial, new { htmlAttributes = new { @class = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoDeMedicamentoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TipoDeMedicamentoId, new SelectList(Model.TipoDeMedicamento, "TipoDeMedicamentoId", "Descripcion"), new { disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.TipoDeMedicamentoId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FormaFarmaceuticaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.FormaFarmaceuticaId, new SelectList(Model.FormaFarmaceutica, "FormaFarmaceuticaId", "Descripcion"), new { disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.FormaFarmaceuticaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LaboratorioId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.LaboratorioId, new { htmlAttributes = new { @class = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.LaboratorioId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PrecioVenta, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.PrecioVenta, new { htmlAttributes = new { @class = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.PrecioVenta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UnidadesEnStock, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.UnidadesEnStock, new { htmlAttributes = new { @class = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.UnidadesEnStock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NivelDeReposicion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.NivelDeReposicion, new { htmlAttributes = new { @class = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.NivelDeReposicion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CantidadesPorUnidad, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.CantidadesPorUnidad, new { htmlAttributes = new { @class = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.CantidadesPorUnidad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Suspendido, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.DisplayFor(model => model.Suspendido, new { htmlAttributes = new { @class = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Suspendido, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Volver", "Index", "", new { @class = "btn btn-success" })
+
+                </div>
+            </div>
+
+        </div>
+        }
+
+    </body>
+</div>
+}

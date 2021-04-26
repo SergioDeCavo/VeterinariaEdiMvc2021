@@ -41,24 +41,37 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
 
         public bool Existe(Localidad localidad)
         {
-            if (localidad.LocalidadId == 0)
+            try
             {
-                return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad);
+                if (localidad.LocalidadId == 0)
+                {
+                    return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad);
+                }
+                return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad && p.ProvinciaId == localidad.ProvinciaId && p.LocalidadId != localidad.LocalidadId);
             }
-            return _context.Localidades.Any(p => p.NombreLocalidad == localidad.NombreLocalidad && p.ProvinciaId==localidad.ProvinciaId && p.LocalidadId != localidad.LocalidadId);
+            catch (Exception)
+            {
+                throw new Exception("Error al verificar si existe una Localidad");
+            }
         }
 
-        public List<LocalidadListDto> GetLista()
+        public List<LocalidadListDto> GetLista(string nombreProvincia)
         {
             try
             {
-                var listaDto = _context.Localidades.Include(p => p.Provincia).Select(p => new LocalidadListDto
+                IQueryable<LocalidadListDto> listaDto = _context.Localidades.Include(p => p.Provincia)
+                    .Select(p => new LocalidadListDto
+                    {
+                        LocalidadId = p.LocalidadId,
+                        NombreLocalidad = p.NombreLocalidad,
+                        Provincia = p.Provincia.NombreProvincia
+                    });
+                if (nombreProvincia!=null)
                 {
-                    LocalidadId = p.LocalidadId,
-                    NombreLocalidad = p.NombreLocalidad,
-                    Provincia = p.Provincia.NombreProvincia
-                }).ToList();
-                return listaDto;
+                    listaDto = listaDto.Where
+                        (p => p.Provincia == nombreProvincia);
+                }
+                return listaDto.ToList();
             }
             catch (Exception e)
             {

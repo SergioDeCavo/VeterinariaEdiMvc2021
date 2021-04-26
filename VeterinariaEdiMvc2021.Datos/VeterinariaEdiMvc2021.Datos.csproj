@@ -43,6 +43,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,10 +60,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityTypeConfigurations\ClienteEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\DrogaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\EmpleadoEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\FormaFarmaceuticaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\LaboratorioEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\LocalidadEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\MascotaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\MedicamentoEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\ProveedorEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\ProvinciaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\RazaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\TipoDeDocumentoEntityTypeConfiguration.cs" />
@@ -67,10 +78,15 @@
     <Compile Include="EntityTypeConfigurations\TipoDeTareaEntityTypeConfiguration.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioClientes.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioDrogas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioEmpleados.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioFormaFarmaceuticas.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioLaboratorios.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioLocalidades.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioMascotas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioMedicamentos.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioProveedores.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioProvincias.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioRazas.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeDocumentos.cs" />
@@ -78,10 +94,15 @@
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeMedicamentos.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeServicios.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeTareas.cs" />
+    <Compile Include="Repositorios\RepositorioClientes.cs" />
     <Compile Include="Repositorios\RepositorioDrogas.cs" />
+    <Compile Include="Repositorios\RepositorioEmpleados.cs" />
     <Compile Include="Repositorios\RepositorioFormaFarmaceuticas.cs" />
     <Compile Include="Repositorios\RepositorioLaboratorios.cs" />
     <Compile Include="Repositorios\RepositorioLocalidades.cs" />
+    <Compile Include="Repositorios\RepositorioMascotas.cs" />
+    <Compile Include="Repositorios\RepositorioMedicamentos.cs" />
+    <Compile Include="Repositorios\RepositorioProveedores.cs" />
     <Compile Include="Repositorios\RepositorioProvincias.cs" />
     <Compile Include="Repositorios\RepositorioRazas.cs" />
     <Compile Include="Repositorios\RepositorioTipoDeDocumentos.cs" />
@@ -102,7 +123,9 @@
       <Name>VeterinariaEdiMvc2021.Mapeador</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

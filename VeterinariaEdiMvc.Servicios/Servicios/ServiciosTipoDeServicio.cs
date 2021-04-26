@@ -38,6 +38,20 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        //public bool EstaRelacionado(TipoDeServicioEditDto tipoSerDto)
+        //{
+        //    try
+        //    {
+        //        TipoDeServicio tipoDeServicio = _mapper.Map<TipoDeServicio>(tipoSerDto);
+        //        return _repositorio.EstaRelacionado(tipoDeServicio);
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        throw new Exception(e.Message);
+        //    }
+        //}
+
         public bool Existe(TipoDeServicioEditDto tipoDeServicioDto)
         {
             try
@@ -72,7 +86,7 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
                 return _repositorio.GetLista();
                 //return _mapper.Map<List<TipoDeServicioListDto>>(lista);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw new Exception("Error");

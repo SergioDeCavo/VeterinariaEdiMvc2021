@@ -23,7 +23,10 @@ namespace VeterinariaEdiMvc2021.Windows
             DialogResult = DialogResult.Cancel;
         }
 
-        
+        private void frmBuscarProvincias_Load(object sender, EventArgs e)
+        {
+            Helpers.Helper.CargarComboProvincias(ref cboProvincia);
+        }
 
         private ProvinciaListDto provinciaDto;
 
@@ -53,9 +56,6 @@ namespace VeterinariaEdiMvc2021.Windows
             return valido;
         }
 
-        private void frmBuscarProvincias_Load(object sender, EventArgs e)
-        {
-            Helpers.Helper.CargarComboProvincias(ref cboProvincia);
-        }
+        
     }
 }
