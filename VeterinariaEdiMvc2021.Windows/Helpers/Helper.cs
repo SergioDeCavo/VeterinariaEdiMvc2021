@@ -5,6 +5,7 @@ using VeterinariaEdiMvc2021.Entidades.DTOs.Cliente;
 using VeterinariaEdiMvc2021.Entidades.DTOs.FormaFarmaceutica;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Laboratorio;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Localidad;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Medicamento;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Provincia;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Raza;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeDocumento;
@@ -177,6 +178,22 @@ namespace VeterinariaEdiMvc2021.Windows.Helpers
             combo.DisplayMember = "Nombre";
             combo.SelectedIndex = 0;
 
+        }
+
+        public static void CargarComboMedicamentos(ref ComboBox combo, string tipoDeMedicamento)
+        {
+            IServiciosMedicamento serviciosMedicamento = DI.Create<IServiciosMedicamento>();
+            var lista2 = serviciosMedicamento.GetLista(tipoDeMedicamento);
+            var defaultTipo2 = new MedicamentoListDto
+            {
+                MedicamentoId = 0,
+                NombreComercial = "<Seleccione un Medicamento>"
+            };
+            lista2.Insert(0, defaultTipo2);
+            combo.DataSource = lista2;
+            combo.ValueMember = "MedicamentoId";
+            combo.DisplayMember = "NombreComercial";
+            combo.SelectedIndex = 0;
         }
 
     }

@@ -11,5 +11,10 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(Medicamento medicamento);
         MedicamentoEditDto GetMedicamentoPorId(int? id);
         void Borrar(int medicamentoId);
+        void SetearReservarProducto(int medicamentoId, int v);
+        void ActualizarStock(int medicamentoId, int cantidad);
+        Medicamento GetTMedPorId(int id);
+        List<Medicamento> GetLista(int tipoDeMedicamentoId);
+        List<Medicamento> GetLista();
     }
 }

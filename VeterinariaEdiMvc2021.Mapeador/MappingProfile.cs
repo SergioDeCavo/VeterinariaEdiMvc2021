@@ -4,6 +4,7 @@ using VeterinariaEdiMvc2021.Entidades.DTOs.Cliente;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Droga;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Empleado;
 using VeterinariaEdiMvc2021.Entidades.DTOs.FormaFarmaceutica;
+using VeterinariaEdiMvc2021.Entidades.DTOs.ItemVenta;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Laboratorio;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Localidad;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Mascota;
@@ -16,6 +17,7 @@ using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeMascota;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeMedicamento;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeServicio;
 using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeTarea;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Venta;
 using VeterinariaEdiMvc2021.Entidades.Entidades;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Carrito;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Cliente;
@@ -34,6 +36,7 @@ using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeMascota;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeMedicamento;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeServicio;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeTarea;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Venta;
 
 namespace VeterinariaEdiMvc2021.Mapeador
 {
@@ -58,6 +61,15 @@ namespace VeterinariaEdiMvc2021.Mapeador
             LoadMedicamentoMapping();
             LoadProveedor();
             LoadCarritoMapping();
+            LoadVentasMapping();
+            LoadItemVentasMapping();
+            
+        }
+
+        private void LoadItemVentasMapping()
+        {
+            CreateMap<ItemVenta, ItemVentaListDto>()
+                .ForMember(dest => dest.Medicamento, act => act.MapFrom(src => src.Medicamento.NombreComercial));
         }
 
         private void LoadCarritoMapping()
@@ -93,6 +105,8 @@ namespace VeterinariaEdiMvc2021.Mapeador
             CreateMap<MascotaEditViewModel, MascotaEditDto>().ReverseMap();
             CreateMap<MascotaEditDto, Mascota>().ReverseMap();
             CreateMap<MascotaEditDto, MascotaListDto>().ReverseMap();
+            CreateMap<Mascota, MascotaListViewModel>().ForMember(dest => dest.Nombre, act => act.MapFrom(src => src.TipoDeMascota.Descripcion));
+
         }
 
         private void LoadEmpleadoMapping()
@@ -216,6 +230,10 @@ namespace VeterinariaEdiMvc2021.Mapeador
             CreateMap<TipoDeTareaEditDto, TipoDeTareaListDto>().ReverseMap();
         }
 
-        
+        private void LoadVentasMapping() 
+        {
+            CreateMap<Venta, VentaListDto>().ForMember(dest => dest.Cliente, act => act.MapFrom(src => src.Cliente.Apellido + " " + src.Cliente.Nombre));
+            CreateMap<VentaListDto, VentaListViewModel>().ReverseMap();
+        }
     }
 }

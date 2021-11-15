@@ -1,61 +1,64 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios.Facades;
-using VeterinariaEdiMvc2021.Entidades.DTOs.Medicamento;
-using VeterinariaEdiMvc2021.Entidades.Entidades;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Carrito;
+using VeterinariaEdiMvc2021.Entidades.ViewModels.Medicamento;
 
 namespace VeterinariaEdiMvc2021.Web.Controllers
 {
     public class CarritoController : Controller
     {
-        private readonly IServiciosMedicamento _servicioMedicamento;
-        private IMapper _mapper;
-
-        public CarritoController(IServiciosMedicamento servicioMedicamento)
+        
+        private readonly IServiciosMedicamento _servicio;
+        public CarritoController(IServiciosMedicamento servicio)
         {
-            _servicioMedicamento = servicioMedicamento;
-            _mapper = Mapeador.Mapeador.CrearMapper();
+            _servicio = servicio;
+        }
+        // GET: Carrito
+        public CarritoController()
+        {
         }
 
-        public PartialViewResult Summary(Carrito carrito)
+        public ViewResult Index(string returnUrl)
         {
-            return PartialView(carrito);
-        }
-
-        public ViewResult Index(Carrito carrito, string returnUrl)
-        {
-            List<ItemCarritoListViewModel> listaItems = _mapper.Map<List<ItemCarritoListViewModel>>(carrito.GetItems());
-            return View(new CarritoListViewModel
+            return View(new CarritoViewModel
             {
-                Items = listaItems,
-                ReturnUrl=returnUrl
+                Carrito = GetCart(),
+                ReturnUrl = returnUrl
             });
         }
 
-        public RedirectToRouteResult AgregarAlCarrito(Carrito carrito, int MedicamentoId, string returnUrl)
+        //public RedirectToRouteResult AddToCart(int medicamentoId, string returnUrl)
+        //{
+        //    MedicamentoListViewModel medicamentoVm = Mapeador.Mapeador.ConstruirMedicamentoListVm(Mapeador.Mapeador.CrearMapper.Map_servicios.GetMedicamentoPorId(medicamentoId));
+
+        //    if (medicamentoVm != null)
+        //    {
+        //        GetCart().AddItem(medicamentoVm, 1);
+        //    }
+        //    return RedirectToAction("Index", new { returnUrl });
+        //}
+
+        public RedirectToRouteResult RemoveFromCart(int medicamentoId, string returnUrl)
         {
-            MedicamentoEditDto medicamentoDto = _servicioMedicamento.GetMedicamentoPorId(MedicamentoId);
-            if (medicamentoDto != null)
-            {
-                Medicamento medicamento = _mapper.Map<Medicamento>(medicamentoDto);
-                carrito.AgregarAlCarrito(medicamento, 1);
-            }
+            GetCart().RemoveItem(medicamentoId);
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult EliminarDelCarrito(Carrito carrito, int medicamentoId, string returnUrl)
+        private CarritoModel GetCart()
         {
-            Medicamento medicamento = _mapper.Map<Medicamento>(_servicioMedicamento.GetMedicamentoPorId(medicamentoId));
-            if (medicamento != null)
+            CarritoModel carrito = (CarritoModel)Session["Carrito"];
+            if (carrito == null)
             {
-                carrito.EliminarDelCarrito(medicamento);
+                carrito = new CarritoModel();
+                Session["Carrito"] = carrito;
             }
-            return RedirectToAction("Index", new { returnUrl });
+            return carrito;
         }
+
     }
+
 }

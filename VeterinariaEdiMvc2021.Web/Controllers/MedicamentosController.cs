@@ -13,6 +13,7 @@ using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeMedicamento;
 using PagedList;
 using VeterinariaEdiMvc2021.Datos;
 using VeterinariaEdiMvc2021.Entidades.Entidades;
+using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeMedicamento;
 
 namespace VeterinariaEdiMvc2021.Web.Controllers
 {
@@ -35,20 +36,69 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: Empleados
-        public ActionResult Index(int? tipoDeMedicamentoId=null, int? page=null)
+        public ActionResult Index(int? tipoDeMedicamentoSeleccionadoId=null, int? page=null)
         {
             page = (page ?? 1);
-            var medicamentos = tipoDeMedicamentoId.HasValue
-                ? db.Medicamentos.Where(t => t.TipoDeMedicamentoId == tipoDeMedicamentoId)
-                : db.Medicamentos;
+
+            //List<Medicamento> lista;
+
+            //if (tipoDeMedicamentoSeleccionadoId != null)
+            //{
+            //    lista = _servicio.GetLista(tipoDeMedicamentoSeleccionadoId.Value);
+
+            //}
+            //else
+            //{
+            //    lista = _servicio.GetLista();
+            //}
+
+            //if (tipoDeMedicamentoSeleccionadoId != null)
+            //{
+            //    Session["tipoDeMedicamentoSeleccionadoId"] = tipoDeMedicamentoSeleccionadoId;
+            //}
+            //else
+            //{
+            //    if (Session["tipoDeMedicamentoSeleccionadoId"] != null)
+            //    {
+            //        tipoDeMedicamentoSeleccionadoId = (int)Session["tipoDeMedicamentoSeleccionadoId"];
+            //    }
+            //}
+
+            //if (tipoDeMedicamentoSeleccionadoId != null)
+            //{
+            //    if (tipoDeMedicamentoSeleccionadoId.Value > 0)
+            //    {
+            //        lista = _servicio.GetLista(tipoDeMedicamentoSeleccionadoId.Value);
+            //    }
+            //    else
+            //    {
+            //        lista = _servicio.GetLista();
+            //    }
+            //}
+            //else
+            //{
+            //    lista = _servicio.GetLista();
+            //}
+
+            //var medicamentos = tipoDeMedicamentoId.HasValue
+            //    ? db.Medicamentos.Where(t => t.TipoDeMedicamentoId == tipoDeMedicamentoId)
+            //    : db.Medicamentos;
             var listaDto = _servicio.GetLista(null);
             var listaVm = _mapper.Map<List<MedicamentoListViewModel>>(listaDto)
                 .OrderBy(c => c.NombreComercial)
                 .ToPagedList((int)page, 5);
             var listaTipo = db.TipoDeMedicamentos.ToList();
+
+            //var listaVma = Mapeador.Mapeador.ConstruirListaMedicamentoListVm(lista);
+            //var listaTipoDeMedicamentos = _serviciosTipoDeMedicamento.GetLista();
+            //listaTipoDeMedicamentos.Insert(0, new TipoDeMedicamentoListDto() { TipoDeMedicamentoId = 0, Descripcion = "[Seleccione un Tipo de Medicamento]" });
+            //listaTipoDeMedicamentos.Insert(1, new TipoDeMedicamentoListDto() { TipoDeMedicamentoId = -1, Descripcion = "[Ver Todas]" });
+            //ViewBag.ListaTipoDeMedicamentos = new SelectList(listaTipoDeMedicamentos, "TipoDeMedicamentoId", "Descripcion", tipoDeMedicamentoSeleccionadoId);
+
+
             listaTipo.Insert(0, new TipoDeMedicamento() { TipoDeMedicamentoId = 0, Descripcion = "[Seleccione Tipo De Medicamento]" });
             ViewBag.listaTipo = new SelectList(listaTipo, "TipoDeMedicamentoId", "Descripcion");
-                return View(listaVm);
+            return View(listaVm);
         }
 
         [HttpGet]

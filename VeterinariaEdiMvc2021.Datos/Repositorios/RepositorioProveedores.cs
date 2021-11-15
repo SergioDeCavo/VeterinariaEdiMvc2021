@@ -83,6 +83,34 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public List<Proveedor> GetLista(int localidadId)
+        {
+            try
+            {
+                return _context.Proveedores.Where(c => c.LocalidadId == localidadId)
+                    .OrderBy(c => c.RazonSocial)
+                    .ThenBy(c => c.Localidad)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar leer la tabla de Proveedores");
+            }
+        }
+
+        public List<Proveedor> GetLista()
+        {
+            try
+            {
+                return _context.Proveedores.Include(p => p.Localidad)
+                    .OrderBy(c => c.RazonSocial).ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public ProveedorEditDto GetProveedorPorId(int? id)
         {
             try

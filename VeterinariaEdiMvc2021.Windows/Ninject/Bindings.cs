@@ -67,6 +67,13 @@ namespace VeterinariaEdiMvc2021.Windows.Ninject
 
             Bind<IRepositorioProveedores>().To<RepositorioProveedores>();
             Bind<IServiciosProveedor>().To<ServiciosProveedor>();
+
+            Bind<IRepositorioVentas>().To<RepositorioVentas>();
+            Bind<IServiciosVenta>().To<ServiciosVenta>();
+
+            Bind<IRepositorioItemVentas>().To<RepositorioItemVentas>();
+            Bind<IServiciosItemVenta>().To<ServiciosItemVenta>();
+
         }
     }
 }

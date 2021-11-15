@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VeterinariaEdiMvc.Servicios.Servicios.Facades;
 using VeterinariaEdiMvc2021.Windows.Ninject;
 
 namespace VeterinariaEdiMvc2021.Windows
@@ -59,6 +60,7 @@ namespace VeterinariaEdiMvc2021.Windows
         private void btnProvincias_Click(object sender, EventArgs e)
         {
             frmProvincias frm = DI.Create<frmProvincias>();
+            //frmProvincias frm = new frmProvincias(DI.Create<IServiciosProvincia>);
             frm.ShowDialog(this);
         }
 

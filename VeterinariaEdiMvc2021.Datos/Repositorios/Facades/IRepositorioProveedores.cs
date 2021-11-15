@@ -11,5 +11,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(Proveedor proveedor);
         ProveedorEditDto GetProveedorPorId(int? id);
         void Borrar(int proveedorId);
+        List<Proveedor> GetLista(int localidadId);
+        List<Proveedor> GetLista();
     }
 }

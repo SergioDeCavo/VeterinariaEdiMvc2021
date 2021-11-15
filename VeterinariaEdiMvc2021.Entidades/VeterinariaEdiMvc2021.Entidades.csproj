@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,8 @@
     <Compile Include="DTOs\Empleado\EmpleadoListDto.cs" />
     <Compile Include="DTOs\FormaFarmaceutica\FormaFarmaceuticaEditDto.cs" />
     <Compile Include="DTOs\FormaFarmaceutica\FormaFarmaceuticaListDto.cs" />
+    <Compile Include="DTOs\ItemVenta\ItemVentaEditDto.cs" />
+    <Compile Include="DTOs\ItemVenta\ItemVentaListDto.cs" />
     <Compile Include="DTOs\Laboratorio\LaboratorioEditDto.cs" />
     <Compile Include="DTOs\Laboratorio\LaboratorioListDto.cs" />
     <Compile Include="DTOs\Localidad\LocalidadEditDto.cs" />
@@ -82,12 +85,15 @@
     <Compile Include="DTOs\TipoDeServicio\TipoDeServicioListDto.cs" />
     <Compile Include="DTOs\TipoDeTarea\TipoDeTareaEditDto.cs" />
     <Compile Include="DTOs\TipoDeTarea\TipoDeTareaListDto.cs" />
+    <Compile Include="DTOs\Venta\VentaEditDto.cs" />
+    <Compile Include="DTOs\Venta\VentaListDto.cs" />
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Droga.cs" />
     <Compile Include="Entidades\Empleado.cs" />
     <Compile Include="Entidades\FormaFarmaceutica.cs" />
     <Compile Include="Entidades\ItemCarrito.cs" />
+    <Compile Include="Entidades\ItemVenta.cs" />
     <Compile Include="Entidades\Laboratorio.cs" />
     <Compile Include="Entidades\Localidad.cs" />
     <Compile Include="Entidades\Mascota.cs" />
@@ -100,8 +106,12 @@
     <Compile Include="Entidades\TipoDeMedicamento.cs" />
     <Compile Include="Entidades\TipoDeServicio.cs" />
     <Compile Include="Entidades\TipoDeTarea.cs" />
+    <Compile Include="Entidades\Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Carrito\CarritoItemModel.cs" />
     <Compile Include="ViewModels\Carrito\CarritoListViewModel.cs" />
+    <Compile Include="ViewModels\Carrito\CarritoModel.cs" />
+    <Compile Include="ViewModels\Carrito\CarritoViewModel.cs" />
     <Compile Include="ViewModels\Carrito\ItemCarritoListViewModel.cs" />
     <Compile Include="ViewModels\Cliente\ClienteEditViewModel.cs" />
     <Compile Include="ViewModels\Cliente\ClienteListViewModel.cs" />
@@ -138,6 +148,7 @@
     <Compile Include="ViewModels\TipoDeServicio\TipoDeServicioListViewModel.cs" />
     <Compile Include="ViewModels\TipoDeTarea\TipoDeTareaEditViewModel.cs" />
     <Compile Include="ViewModels\TipoDeTarea\TipoDeTareaListViewModel.cs" />
+    <Compile Include="ViewModels\Venta\VentaListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

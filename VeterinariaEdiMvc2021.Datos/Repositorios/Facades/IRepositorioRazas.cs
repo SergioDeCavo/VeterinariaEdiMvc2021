@@ -12,5 +12,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         RazaEditDto GetRazaPorId(int? id);
         void Borrar(int razaId);
         bool EstaRelacionado(Raza raza);
+        List<Raza> GetLista(int tipoDeMascotaId);
+        List<Raza> GetLista();
     }
 }

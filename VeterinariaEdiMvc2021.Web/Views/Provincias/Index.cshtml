@@ -41,10 +41,13 @@
         </tr>
     }
 
+
+
+
 </table>
 </>
 </>
-Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+Pàgina:  @Model.PageNumber  de @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new
 {
     page

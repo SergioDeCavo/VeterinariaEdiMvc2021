@@ -80,6 +80,34 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public List<Localidad> GetLista(int provinciaId)
+        {
+            try
+            {
+                return _context.Localidades.Where(c => c.ProvinciaId == provinciaId)
+                    .OrderBy(c => c.NombreLocalidad)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar leer la tabla de Localidades");
+            }
+
+        }
+
+        public List<Localidad> GetLista()
+        {
+            try
+            {
+                return _context.Localidades.Include(p => p.Provincia)
+                    .OrderBy(c => c.NombreLocalidad).ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public LocalidadEditDto GetLocalidadPorId(int? id)
         {
             try

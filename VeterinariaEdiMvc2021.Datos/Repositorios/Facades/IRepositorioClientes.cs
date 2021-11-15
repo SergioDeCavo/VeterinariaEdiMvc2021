@@ -11,5 +11,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(Cliente cliente);
         ClienteEditDto GetClientePorId(int? id);
         void Borrar(int clienteId);
+        List<Cliente> GetLista(int localidadId);
+        List<Cliente> GetLista();
     }
 }

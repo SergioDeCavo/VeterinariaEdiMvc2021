@@ -64,6 +64,7 @@
     <Compile Include="EntityTypeConfigurations\DrogaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\EmpleadoEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\FormaFarmaceuticaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\ItemVentaEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\LaboratorioEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\LocalidadEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\MascotaEntityTypeConfiguration.cs" />
@@ -76,12 +77,14 @@
     <Compile Include="EntityTypeConfigurations\TipoDeMedicamentoEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\TipoDeServicioEntityTypeConfiguration.cs" />
     <Compile Include="EntityTypeConfigurations\TipoDeTareaEntityTypeConfiguration.cs" />
+    <Compile Include="EntityTypeConfigurations\VentaEntityTypeConfiguration.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioClientes.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioDrogas.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioEmpleados.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioFormaFarmaceuticas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioItemVentas.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioLaboratorios.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioLocalidades.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioMascotas.cs" />
@@ -94,10 +97,12 @@
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeMedicamentos.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeServicios.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoDeTareas.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioVentas.cs" />
     <Compile Include="Repositorios\RepositorioClientes.cs" />
     <Compile Include="Repositorios\RepositorioDrogas.cs" />
     <Compile Include="Repositorios\RepositorioEmpleados.cs" />
     <Compile Include="Repositorios\RepositorioFormaFarmaceuticas.cs" />
+    <Compile Include="Repositorios\RepositorioItemVentas.cs" />
     <Compile Include="Repositorios\RepositorioLaboratorios.cs" />
     <Compile Include="Repositorios\RepositorioLocalidades.cs" />
     <Compile Include="Repositorios\RepositorioMascotas.cs" />
@@ -110,6 +115,7 @@
     <Compile Include="Repositorios\RepositorioTipoDeMedicamentos.cs" />
     <Compile Include="Repositorios\RepositorioTipoDeServicios.cs" />
     <Compile Include="Repositorios\RepositorioTipoDeTareas.cs" />
+    <Compile Include="Repositorios\RepositorioVentas.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="VeterinariaEdiMvc2021DbContext.cs" />
   </ItemGroup>

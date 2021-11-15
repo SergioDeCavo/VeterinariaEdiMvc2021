@@ -113,6 +113,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
                     empleadoInDb.TelefonoMovil = empleado.TelefonoMovil;
                     empleadoInDb.CorreoElectronico = empleado.CorreoElectronico;
                     empleadoInDb.TipoDeTareaId = empleado.TipoDeTareaId;
+                    empleadoInDb.Imagen = empleado.Imagen;
                 }
             }
             catch (Exception)

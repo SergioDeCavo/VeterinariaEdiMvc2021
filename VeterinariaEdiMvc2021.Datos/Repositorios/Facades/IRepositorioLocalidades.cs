@@ -11,5 +11,7 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios.Facades
         void Guardar(Localidad localidad);
         LocalidadEditDto GetLocalidadPorId(int? id);
         void Borrar(int localidadId);
+        List<Localidad> GetLista(int provinciaId);
+        List<Localidad> GetLista();
     }
 }

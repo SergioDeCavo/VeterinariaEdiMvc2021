@@ -75,7 +75,6 @@
             this.btnCompras.Text = "Compras";
             this.btnCompras.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCompras.UseVisualStyleBackColor = false;
-            this.btnCompras.Click += new System.EventHandler(this.btnCompras_Click);
             // 
             // btnServicios2
             // 
@@ -90,7 +89,6 @@
             this.btnServicios2.Text = "Servicios";
             this.btnServicios2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnServicios2.UseVisualStyleBackColor = false;
-            this.btnServicios2.Click += new System.EventHandler(this.btnServicios2_Click);
             // 
             // btnVentas
             // 
@@ -105,7 +103,6 @@
             this.btnVentas.Text = "Ventas";
             this.btnVentas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnVentas.UseVisualStyleBackColor = false;
-            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             // 
             // frmServicios
             // 

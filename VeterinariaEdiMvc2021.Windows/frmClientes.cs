@@ -41,7 +41,7 @@ namespace VeterinariaEdiMvc2021.Windows
                 lista = _servicio.GetLista(null);
                 MostrarDatosEnGrilla();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

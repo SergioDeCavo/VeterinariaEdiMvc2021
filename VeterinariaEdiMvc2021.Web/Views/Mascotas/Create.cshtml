@@ -1,9 +1,9 @@
 ﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Mascota.MascotaEditViewModel
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Mascota</h4>
         <hr />
@@ -58,3 +58,39 @@
     </div>
 }
 
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#TipoDeMascotaId").change(function() {
+                $("#RazaId").empty();
+            });
+
+            $("#TipoDeMascotaId").change(function() {
+                $("#RazaId").empty();
+                $("#RazaId").append('<option value="0">[Seleccionar Raza]</option>');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetRazas")',
+                    dataType: 'json',
+                    data: {
+                        tipoDeMascotaId: $("#TipoDeMascotaId").val()
+
+                    },
+                    success: function(razas) {
+                        $.each(razas,
+                            function(i, raza) {
+                                $("#RazaId").append('<option value="' + raza.RazaId + '">' + raza.Descripcion + '</option>');
+                            });
+                    },
+                    error: function(ex) {
+                        alert('Error al intentar cargar las razas.' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
+}

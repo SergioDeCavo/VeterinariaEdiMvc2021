@@ -62,6 +62,30 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        public List<Mascota> GetLista(int tipoDeMascotaId)
+        {
+            try
+            {
+                return _repositorio.GetLista(tipoDeMascotaId);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Mascota> GetLista()
+        {
+            try
+            {
+                return _repositorio.GetLista();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
 
         public MascotaEditDto GetMascotaPorId(int? id)
         {

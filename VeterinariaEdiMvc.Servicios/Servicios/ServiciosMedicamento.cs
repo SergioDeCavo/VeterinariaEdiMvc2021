@@ -62,6 +62,30 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             }
         }
 
+        public List<Medicamento> GetLista(int tipoDeMedicamentoId)
+        {
+            try
+            {
+                return _repositorio.GetLista(tipoDeMedicamentoId);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Medicamento> GetLista()
+        {
+            try
+            {
+                return _repositorio.GetLista();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public MedicamentoEditDto GetMedicamentoPorId(int? id)
         {
             try
@@ -72,6 +96,18 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
             {
                 throw new Exception(e.Message);
 
+            }
+        }
+
+        public Medicamento GetMedPorId(int id)
+        {
+            try
+            {
+                return _repositorio.GetTMedPorId(id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
 
@@ -90,5 +126,6 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
 
             }
         }
+
     }
 }

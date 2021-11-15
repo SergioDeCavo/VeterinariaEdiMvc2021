@@ -7,8 +7,11 @@ using System.Net;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios;
 using VeterinariaEdiMvc.Servicios.Servicios.Facades;
+using VeterinariaEdiMvc2021.Datos;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Localidad;
+using VeterinariaEdiMvc2021.Entidades.DTOs.Provincia;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Raza;
+using VeterinariaEdiMvc2021.Entidades.Entidades;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Provincia;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Raza;
@@ -20,6 +23,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         private readonly IServiciosLocalidad _servicio;
         private readonly IServiciosProvincia _servicioProvincias;
         private readonly IMapper _mapper;
+        private VeterinariaEdiMvc2021DbContext db = new VeterinariaEdiMvc2021DbContext();
 
         public LocalidadesController(IServiciosLocalidad servicio, IServiciosProvincia servicioProvincias)
         {
@@ -29,15 +33,65 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: Localidades
-        public ActionResult Index(int? page=null)
+
+
+        public ActionResult Index(int? provinciaSeleccionadaId=null, int? page=null)
         {
             page = (page ?? 1);
+
+            List<Localidad> lista;
+
+            if (provinciaSeleccionadaId != null)
+            {
+                lista = _servicio.GetLista(provinciaSeleccionadaId.Value);
+
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            if (provinciaSeleccionadaId != null)
+            {
+                Session["provinciaSeleccionadaId"] = provinciaSeleccionadaId;
+            }
+            else
+            {
+                if (Session["provinciaSeleccionadaId"] != null)
+                {
+                    provinciaSeleccionadaId = (int)Session["provinciaSeleccionadaId"];
+                }
+            }
+
+            if (provinciaSeleccionadaId != null)
+            {
+                if (provinciaSeleccionadaId.Value > 0)
+                {
+                    lista = _servicio.GetLista(provinciaSeleccionadaId.Value);
+                }
+                else
+                {
+                    lista = _servicio.GetLista();
+                }
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            //var localidades = provinciaSeleccionadaId.HasValue ? db.Localidades.Where(l => l.ProvinciaId == provinciaSeleccionadaId) : db.Localidades;
             var listaDto = _servicio.GetLista(null);
             var listaVm = _mapper.Map<List<LocalidadListViewModel>>(listaDto)
-                .OrderBy(c => c.NombreLocalidad)
-                .ThenBy(c => c.Provincia)
-                .ToPagedList((int)page, 5);
-            return View(listaVm);
+
+            .OrderBy(c => c.NombreLocalidad)
+            .ThenBy(c => c.Provincia)
+            .ToPagedList((int)page, 5);
+            var listaVma = Mapeador.Mapeador.ConstruirListaLocalidadListVm(lista);
+            var listaProvincias = _servicioProvincias.GetLista();
+            listaProvincias.Insert(0, new ProvinciaListDto() { ProvinciaId = 0, NombreProvincia = "[Seleccione una Provincia]" });
+            listaProvincias.Insert(1, new ProvinciaListDto() { ProvinciaId = -1, NombreProvincia = "[Ver Todas]" });
+            ViewBag.ListaProvincias = new SelectList(listaProvincias, "ProvinciaId", "NombreProvincia", provinciaSeleccionadaId);
+            return View(listaVma.ToPagedList((int)page,5));
         }
 
         [HttpGet]

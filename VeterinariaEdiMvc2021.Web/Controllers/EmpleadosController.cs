@@ -12,6 +12,7 @@ using VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Provincia;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeDocumento;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeTarea;
+using VeterinariaEdiMvc2021.Web.Clases;
 
 namespace VeterinariaEdiMvc2021.Web.Controllers
 {
@@ -23,6 +24,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         private readonly IServiciosProvincia _serviciosProvincia;
         private readonly IServiciosTipoDeTarea _serviciosTipoDeTarea;
         private readonly IMapper _mapper;
+        private readonly string folder = "~/Content/Imagenes/Empleado/";
 
         public EmpleadosController(IServiciosEmpleado servicio, IServiciosTipoDeDocumento serviciosTipoDeDocumento, IServiciosLocalidad serviciosLocalidad, IServiciosProvincia serviciosProvincia, IServiciosTipoDeTarea serviciosTipoDeTarea)
         {
@@ -55,7 +57,8 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 TipoDeDocumento = _mapper.Map<List<TipoDeDocumentoListViewModel>>(_serviciosTipoDeDocumento.GetLista()),
                 Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null)),
                 Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista()),
-                TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista())
+                TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista()),
+                Imagen = "Sin_imagen_disponible.jpg"
             };
             return View(empleadoVm);
         }
@@ -70,6 +73,8 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 empleadoEditVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
                 empleadoEditVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
                 empleadoEditVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+                empleadoEditVm.Imagen = "Sin_imagen_disponible.jpg";
+
                 return View(empleadoEditVm);
             }
            EmpleadoEditDto empleadoDto = _mapper.Map<EmpleadoEditDto>(empleadoEditVm);
@@ -80,12 +85,26 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 empleadoEditVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
                 empleadoEditVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
                 empleadoEditVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+                empleadoEditVm.Imagen = "Sin_imagen_disponible.jpg";
                 return View(empleadoEditVm);
 
             }
             try
             {
+                if (empleadoEditVm.ImagenFile != null)
+                {
+                    empleadoDto.Imagen = $"{empleadoEditVm.ImagenFile.FileName}";
+                }
+
                 _servicio.Guardar(empleadoDto);
+
+
+                if (empleadoEditVm.ImagenFile != null)
+                {
+                    var file = $"{empleadoEditVm.ImagenFile.FileName}";
+                    var response = FileHelper.UploadPhoto(empleadoEditVm.ImagenFile, folder, file);
+                }
+
                 TempData["Msg"] = "Empleado Agregado....";
                 return RedirectToAction("Index");
             }
@@ -96,6 +115,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 empleadoEditVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
                 empleadoEditVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
                 empleadoEditVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+                empleadoEditVm.Imagen = "Sin_imagen_disponible.jpg";
                 return View(empleadoEditVm);
 
             }
@@ -118,6 +138,12 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             empleadoVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
             empleadoVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
             empleadoVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+
+            if (empleadoVm.Imagen == null)
+            {
+                empleadoVm.Imagen = "Sin_imagen_disponible.jpg";
+            }
+
             return View(empleadoVm);
         }
 
@@ -131,6 +157,10 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 empleadoVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
                 empleadoVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
                 empleadoVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+                if (empleadoVm.Imagen == null)
+                {
+                    empleadoVm.Imagen = "Sin_imagen_disponible.jpg";
+                }
                 return View(empleadoVm);
             }
             EmpleadoEditDto empleadoDto = _mapper.Map<EmpleadoEditDto>(empleadoVm);
@@ -141,12 +171,25 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 empleadoVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
                 empleadoVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
                 empleadoVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+                if (empleadoVm.Imagen == null)
+                {
+                    empleadoVm.Imagen = "Sin_imagen_disponible.jpg";
+                }
                 return View(empleadoVm);
 
             }
             try
             {
+                if (empleadoVm.ImagenFile != null)
+                {
+                    empleadoDto.Imagen = $"{empleadoVm.ImagenFile.FileName}";
+                }
                 _servicio.Guardar(empleadoDto);
+                if (empleadoVm.ImagenFile != null)
+                {
+                    var file = $"{empleadoVm.ImagenFile.FileName}";
+                    var response = FileHelper.UploadPhoto(empleadoVm.ImagenFile, folder, file);
+                }
                 TempData["Msg"] = "Empleado Editado....";
                 return RedirectToAction("Index");
             }
@@ -157,6 +200,10 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 empleadoVm.Localidad = _mapper.Map<List<LocalidadListViewModel>>(_serviciosLocalidad.GetLista(null));
                 empleadoVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
                 empleadoVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
+                if (empleadoVm.Imagen == null)
+                {
+                    empleadoVm.Imagen = "Sin_imagen_disponible.jpg";
+                }
                 return View(empleadoVm);
 
             }
@@ -217,5 +264,12 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             empleadoVm.TipoDeTarea = _mapper.Map<List<TipoDeTareaListViewModel>>(_serviciosTipoDeTarea.GetLista());
             return View(empleadoVm);
         }
+
+        public JsonResult GetLocalidades(int provinciaId)
+        {
+            var localidadesVm = Mapeador.Mapeador.ConstruirListaLocalidadListVm(_serviciosLocalidad.GetLista(provinciaId));
+            return Json(localidadesVm);
+        }
+
     }
 }

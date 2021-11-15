@@ -6,6 +6,13 @@
     <h2>Lista de Medicamentos</h2>
 
 </div>
+@*@using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+{
+    <label>Filtar por:</label>
+    @Html.DropDownList("tipoDeMedicamentoId", ViewBag.ListaTipoDeMedicamentos as SelectList, htmlAttributes: new { @class = "form-control" })
+    <input type="submit" class="btn btn-success" value="Filtrar" />
+}*@
+
 @if (TempData["Msg"] != null)
 {
     var msg = TempData["Msg"].ToString();
@@ -49,7 +56,7 @@
                 @Html.DisplayFor(modelItem => item.Suspendido)
             </td>
             <td>
-                @using (Html.BeginForm("AgregarAlCarrito", "Carrito"))
+                @using (Html.BeginForm("AddToCart", "Carrito"))
                 {
                     <div class="pull-right">
                         @Html.ActionLink("Editar", "Edit", new { id = item.MedicamentoId }, new { @class = "btn btn-warning" })
@@ -58,7 +65,15 @@
                         @Html.HiddenFor(modelitem => item.MedicamentoId)
                         @Html.Hidden("medicamentoId", item.MedicamentoId)
                         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                        <input type="submit" class="btn btn-default" value="Agregar" />
+                        @*@if (!item.Suspendido)
+                            {
+                                <input type="submit" class="btn btn-default" value="Agregar" />
+                            }
+                            else
+                            {
+                                <input type="submit" class="btn btn-default" value="Agregar" disabled="disabled" />
+                            }*@
+
                     </div>
                 }
 
@@ -67,8 +82,8 @@
     }
 
 </table>
-    Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new
-    {
-        page
-    }))
+Pàgina:  @Model.PageNumber  de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page
+}))

@@ -20,6 +20,21 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             _mapper = Mapeador.Mapeador.CrearMapper();
         }
 
+        public void ActualizarStock(int medicamentoId, int cantidad)
+        {
+            try
+            {
+                var medicamentoInDb = _context.Medicamentos.SingleOrDefault(p => p.MedicamentoId == medicamentoId);
+                //medicamentoInDb.UnidadesEnPedido -= cantidad;
+                medicamentoInDb.UnidadesEnStock -= cantidad;
+                _context.Entry(medicamentoInDb).State = EntityState.Modified;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public void Borrar(int medicamentoId)
         {
             try
@@ -82,11 +97,52 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public List<Medicamento> GetLista(int tipoDeMedicamentoId)
+        {
+            try
+            {
+                return _context.Medicamentos.Where(c => c.TipoDeMedicamentoId == tipoDeMedicamentoId)
+                    .OrderBy(c => c.NombreComercial)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar leer la tabla de Medicamentos");
+            }
+        }
+
+        public List<Medicamento> GetLista()
+        {
+            try
+            {
+                return _context.Medicamentos.Include(c => c.TipoDeMedicamentoId)
+                    .OrderBy(c => c.NombreComercial)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar leer la tabla de Medicamentos");
+            }
+        }
+
         public MedicamentoEditDto GetMedicamentoPorId(int? id)
         {
             try
             {
                 return _mapper.Map<MedicamentoEditDto>(_context.Medicamentos.SingleOrDefault(me => me.MedicamentoId == id));
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al intentar leer un Medicamento");
+            }
+        }
+
+        public Medicamento GetTMedPorId(int id)
+        {
+            try
+            {
+                return _mapper.Map<Medicamento>(_context.Medicamentos.SingleOrDefault(me => me.MedicamentoId == id));
 
             }
             catch (Exception)
@@ -121,6 +177,20 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             catch (Exception)
             {
                 throw new Exception("Error al intentar Guardar los Mediamentos");
+            }
+        }
+
+        public void SetearReservarProducto(int medicamentoId, int cantidad)
+        {
+            try
+            {
+                var medicamentoInDb = _context.Medicamentos.SingleOrDefault(p => p.MedicamentoId == medicamentoId);
+                medicamentoInDb.UnidadesEnStock += cantidad;
+                _context.Entry(medicamentoInDb).State = EntityState.Modified;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al guardar");
             }
         }
     }

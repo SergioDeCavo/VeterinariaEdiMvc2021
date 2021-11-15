@@ -6,6 +6,13 @@
     <h2>Lista de Localidades</h2>
 
 </div>
+@using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+{
+    <label>Filtar por:</label>
+    @Html.DropDownList("provinciaSeleccionadaId", ViewBag.ListaProvincias as SelectList, htmlAttributes: new {@class = "form-control" })
+    <input type="submit" class="btn btn-success" value="Filtrar"/>
+}
+<hr/>
 @if (TempData["Msg"] != null)
 {
     var msg = TempData["Msg"].ToString();
@@ -18,13 +25,14 @@
     <meta name="viewport" content="width=device-width" />
     <title>Listado de Localidades</title>
 </head>
+
 <body>
     @Html.Partial("_ListaLocalidades", Model)
 
 </body>
 </html>
-@*Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+Pàgina:  @Model.PageNumber  de @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new
 {
     page
-}))*@
+}))

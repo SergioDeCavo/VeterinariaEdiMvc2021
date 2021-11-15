@@ -63,6 +63,31 @@ namespace VeterinariaEdiMvc.Servicios.Servicios
 
         }
 
+        public List<Proveedor> GetLista(int localidadId)
+        {
+            try
+            {
+                return _repositorio.GetLista(localidadId);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Proveedor> GetLista()
+        {
+            try
+            {
+                return _repositorio.GetLista();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
         public ProveedorEditDto GetProveedorPorId(int? id)
         {
             try

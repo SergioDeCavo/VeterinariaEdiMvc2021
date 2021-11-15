@@ -14,6 +14,7 @@
         public string TelefonoMovil { get; set; }
         public string CorreoElectronico { get; set; }
         public int TipoDeTareaId { get; set; }
+        public string Imagen { get; set; }
         public TipoDeDocumento TipoDeDocumento { get; set; }
         public Localidad Localidad { get; set; }
         public Provincia Provincia { get; set; }

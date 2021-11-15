@@ -5,9 +5,9 @@ using VeterinariaEdiMvc2021.Entidades.Entidades;
 
 namespace VeterinariaEdiMvc2021.Datos
 {
-    public class VeterinariaEdiMvc2021DbContext:DbContext
+    public class VeterinariaEdiMvc2021DbContext : DbContext
     {
-        public VeterinariaEdiMvc2021DbContext():base("MiConexion")
+        public VeterinariaEdiMvc2021DbContext() : base("MiConexion")
         {
             Database.CommandTimeout = 50;
             Configuration.UseDatabaseNullSemantics = true;
@@ -36,6 +36,8 @@ namespace VeterinariaEdiMvc2021.Datos
         public DbSet<Mascota> Mascotas { get; set; }
         public DbSet<Medicamento> Medicamentos { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
-
+        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<ItemVenta> ItemVentas { get; set; }
     }
+
 }

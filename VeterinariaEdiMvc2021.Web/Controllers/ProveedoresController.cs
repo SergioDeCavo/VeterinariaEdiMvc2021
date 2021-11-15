@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios.Facades;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Proveedor;
+using VeterinariaEdiMvc2021.Entidades.Entidades;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Proveedor;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Provincia;
@@ -31,15 +32,69 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
 
 
         // GET: Empleados
-        public ActionResult Index(int? page=null)
+        public ActionResult Index(int? localidadSeleccionadaId=null, int? page=null)
         {
             page = (page ?? 1);
+            //var listaDto = _servicio.GetLista(null);
+            //var listaVm = _mapper.Map<List<ProveedorListViewModel>>(listaDto)
+            //    .OrderBy(c => c.RazonSocial)
+            //    .ThenBy(c => c.Localidad)
+            //    .ToPagedList((int)page, 5);
+            //return View(listaVm);
+
+            List<Proveedor> lista;
+
+            if (localidadSeleccionadaId != null)
+            {
+                lista = _servicio.GetLista(localidadSeleccionadaId.Value);
+
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            if (localidadSeleccionadaId != null)
+            {
+                Session["localidadSeleccionadaId"] = localidadSeleccionadaId;
+            }
+            else
+            {
+                if (Session["localidadSeleccionadaId"] != null)
+                {
+                    localidadSeleccionadaId = (int)Session["localidadSeleccionadaId"];
+                }
+            }
+
+            if (localidadSeleccionadaId != null)
+            {
+                if (localidadSeleccionadaId.Value > 0)
+                {
+                    lista = _servicio.GetLista(localidadSeleccionadaId.Value);
+                }
+                else
+                {
+                    lista = _servicio.GetLista();
+                }
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            //var localidades = provinciaSeleccionadaId.HasValue ? db.Localidades.Where(l => l.ProvinciaId == provinciaSeleccionadaId) : db.Localidades;
             var listaDto = _servicio.GetLista(null);
             var listaVm = _mapper.Map<List<ProveedorListViewModel>>(listaDto)
-                .OrderBy(c => c.RazonSocial)
-                .ThenBy(c => c.Localidad)
-                .ToPagedList((int)page, 5);
-            return View(listaVm);
+
+            .OrderBy(c => c.RazonSocial)
+            .ThenBy(c => c.Localidad)
+            .ToPagedList((int)page, 5);
+            var listaVma = Mapeador.Mapeador.ConstruirListaProveedorListVm(lista);
+            var listaLocalidades = _serviciosLocalidad.GetLista();
+            listaLocalidades.Insert(0, new Localidad() { LocalidadId = 0, NombreLocalidad = "[Seleccione una Localidad]" });
+            listaLocalidades.Insert(1, new Localidad() { LocalidadId = -1, NombreLocalidad = "[Ver Todas]" });
+            ViewBag.ListaLocalidades = new SelectList(listaLocalidades, "LocalidadId", "NombreLocalidad", localidadSeleccionadaId);
+            return View(listaVma.ToPagedList((int)page, 5));
         }
 
         [HttpGet]
@@ -193,5 +248,12 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             proveedorVm.Provincia = _mapper.Map<List<ProvinciaListViewModel>>(_serviciosProvincia.GetLista());
             return View(proveedorVm);
         }
+
+        public JsonResult GetLocalidades(int provinciaId)
+        {
+            var localidadesVm = Mapeador.Mapeador.ConstruirListaLocalidadListVm(_serviciosLocalidad.GetLista(provinciaId));
+            return Json(localidadesVm);
+        }
+
     }
 }

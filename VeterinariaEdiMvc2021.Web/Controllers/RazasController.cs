@@ -9,30 +9,88 @@ using System;
 using System.Net;
 using System.Linq;
 using PagedList;
+using VeterinariaEdiMvc2021.Entidades.Entidades;
+using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeMascota;
 
 namespace VeterinariaEdiMvc2021.Web.Controllers
 {
     public class RazasController : Controller
     {
         private readonly IServiciosRaza _servicio;
-        private readonly IServiciosTipoDeMascota _servicioTipoDeMascota;
+        private readonly IServiciosTipoDeMascota _serviciosTipoDeMascota;
         private readonly IMapper _mapper;
 
-        public RazasController(IServiciosRaza servicio, IServiciosTipoDeMascota servicioTipoDeMascota)
+        public RazasController(IServiciosRaza servicio, IServiciosTipoDeMascota serviciosTipoDeMascota)
         {
             _servicio = servicio;
-            _servicioTipoDeMascota = servicioTipoDeMascota;
+            _serviciosTipoDeMascota = serviciosTipoDeMascota;
             _mapper = Mapeador.Mapeador.CrearMapper();
         }
         // GET: Razas
-        public ActionResult Index(int? page=null)
+        public ActionResult Index(int? tipoDeMascotaSeleccionadaId=null, int? page=null)
         {
             page = (page ?? 1);
+            //var listaDto = _servicio.GetLista(null);
+            //var listaVm = _mapper.Map<List<RazaListViewModel>>(listaDto)
+            //    .OrderBy(c => c.Descripcion)
+            //    .ToPagedList((int)page, 5);
+            //return View(listaVm);
+
+            List<Raza> lista;
+
+            if (tipoDeMascotaSeleccionadaId != null)
+            {
+                lista = _servicio.GetLista(tipoDeMascotaSeleccionadaId.Value);
+
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            if (tipoDeMascotaSeleccionadaId != null)
+            {
+                Session["tipoDeMascotaSeleccionadaId"] = tipoDeMascotaSeleccionadaId;
+            }
+            else
+            {
+                if (Session["tipoDeMascotaSeleccionadaId"] != null)
+                {
+                    tipoDeMascotaSeleccionadaId = (int)Session["tipoDeMascotaSeleccionadaId"];
+                }
+            }
+
+            if (tipoDeMascotaSeleccionadaId != null)
+            {
+                if (tipoDeMascotaSeleccionadaId.Value > 0)
+                {
+                    lista = _servicio.GetLista(tipoDeMascotaSeleccionadaId.Value);
+                }
+                else
+                {
+                    lista = _servicio.GetLista();
+                }
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            //var localidades = provinciaSeleccionadaId.HasValue ? db.Localidades.Where(l => l.ProvinciaId == provinciaSeleccionadaId) : db.Localidades;
             var listaDto = _servicio.GetLista(null);
             var listaVm = _mapper.Map<List<RazaListViewModel>>(listaDto)
-                .OrderBy(c => c.Descripcion)
-                .ToPagedList((int)page, 5);
-            return View(listaVm);
+
+            .OrderBy(c => c.Descripcion)
+            //.ThenBy(c => c.Provincia)
+            .ToPagedList((int)page, 5);
+            var listaVma = Mapeador.Mapeador.ConstruirListaRazaListVm(lista);
+            var listaTipoDeMascotas = _serviciosTipoDeMascota.GetLista();
+            listaTipoDeMascotas.Insert(0, new TipoDeMascotaListDto() { TipoDeMascotaId = 0, Descripcion = "[Seleccione un Tipo De Mascota]" });
+            listaTipoDeMascotas.Insert(1, new TipoDeMascotaListDto() { TipoDeMascotaId = -1, Descripcion = "[Ver Todas]" });
+            ViewBag.ListaTipoDeMascotas = new SelectList(listaTipoDeMascotas, "TipoDeMascotaId", "Descripcion", tipoDeMascotaSeleccionadaId);
+            return View(listaVma.ToPagedList((int)page, 5));
+
+
         }
 
         [HttpGet]
@@ -41,7 +99,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         {
             RazaEditViewModel razaVm = new RazaEditViewModel
             {
-                TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista())
+                TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista())
 
             };
             return View(razaVm);
@@ -54,14 +112,14 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                razaEditVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+                razaEditVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
                 return View(razaEditVm);
             }
             RazaEditDto razaDto = _mapper.Map<RazaEditDto>(razaEditVm);
             if (_servicio.Existe(razaDto))
             {
                 ModelState.AddModelError(string.Empty, "Producto existente....");
-                razaEditVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+                razaEditVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
                 return View(razaEditVm);
 
             }
@@ -74,7 +132,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             catch (Exception e)
             {
                 ModelState.AddModelError(string.Empty, e.Message);
-                razaEditVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+                razaEditVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
                 return View(razaEditVm);
 
 
@@ -94,7 +152,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 return HttpNotFound("Còdigo de Raza NO Encontrado");
             }
             RazaEditViewModel razaVm = _mapper.Map<RazaEditViewModel>(razaDto);
-            razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+            razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
             return View(razaVm);
         }
 
@@ -104,14 +162,14 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+                razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
                 return View(razaVm);
             }
             RazaEditDto razaDto = _mapper.Map<RazaEditDto>(razaVm);
             if (_servicio.Existe(razaDto))
             {
                 ModelState.AddModelError(string.Empty, "Producto existente....");
-                razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+                razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
                 return View(razaVm);
 
             }
@@ -124,7 +182,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             catch (Exception e)
             {
                 ModelState.AddModelError(string.Empty, e.Message);
-                razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_servicioTipoDeMascota.GetLista());
+                razaVm.TipoDeMascotas = _mapper.Map<List<TipoDeMascotaListViewModel>>(_serviciosTipoDeMascota.GetLista());
                 return View(razaVm);
 
 
@@ -144,14 +202,14 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
                 return HttpNotFound("Còdigo de Raza inexistente...");
             }
             RazaListViewModel razaVm = _mapper.Map<RazaListViewModel>(razaDto);
-            razaVm.TipoDeMascota = (_servicioTipoDeMascota.GetipoDeMascotaPorId(razaDto.TipoDeMascotaId)).Descripcion;
+            razaVm.TipoDeMascota = (_serviciosTipoDeMascota.GetipoDeMascotaPorId(razaDto.TipoDeMascotaId)).Descripcion;
             return View(razaVm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Delete(RazaListViewModel razaVm)
+        public ActionResult Delete(RazaEditViewModel razaVm)
         {
             RazaEditDto razaDto = _mapper.Map<RazaEditDto>(razaVm);
             if (_servicio.EstaRelacionado(razaDto))
@@ -162,7 +220,7 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             try
             {
                 RazaListDto raDto = _mapper.Map<RazaListDto>(_servicio.GetRazaPorId(razaVm.RazaId));
-                razaVm = _mapper.Map<RazaListViewModel>(_servicio.GetRazaPorId(razaVm.RazaId));
+                razaVm = _mapper.Map<RazaEditViewModel>(_servicio.GetRazaPorId(razaVm.RazaId));
                 _servicio.Borrar(razaVm.RazaId);
                 TempData["Msg"] = "Registro Borrado...";
                 return RedirectToAction("Index");

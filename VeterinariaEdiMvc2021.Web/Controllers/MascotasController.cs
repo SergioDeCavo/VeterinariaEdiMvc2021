@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using VeterinariaEdiMvc.Servicios.Servicios.Facades;
 using VeterinariaEdiMvc2021.Entidades.DTOs.Mascota;
+using VeterinariaEdiMvc2021.Entidades.DTOs.TipoDeMascota;
+using VeterinariaEdiMvc2021.Entidades.Entidades;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Cliente;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Mascota;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Raza;
@@ -33,14 +35,73 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
         }
 
         // GET: Empleados
-        public ActionResult Index(int? page=null)
+        public ActionResult Index(int? tipoDeMascotaSeleccionadaId = null, int? page=null)
         {
+            //page = (page ?? 1);
+            //var listaDto = _servicio.GetLista(null);
+            //var listaVm = _mapper.Map<List<MascotaListViewModel>>(listaDto)
+            //    .OrderBy(c => c.Nombre)
+            //    .ToPagedList((int)page, 5);
+            //return View(listaVm);
             page = (page ?? 1);
+
+            List<Mascota> lista;
+
+            if (tipoDeMascotaSeleccionadaId != null)
+            {
+                lista = _servicio.GetLista(tipoDeMascotaSeleccionadaId.Value);
+
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            if (tipoDeMascotaSeleccionadaId != null)
+            {
+                Session["tipoDeMascotaSeleccionadaId"] = tipoDeMascotaSeleccionadaId;
+            }
+            else
+            {
+                if (Session["tipoDeMascotaSeleccionadaId"] != null)
+                {
+                    tipoDeMascotaSeleccionadaId = (int)Session["tipoDeMascotaSeleccionadaId"];
+                }
+            }
+
+            if (tipoDeMascotaSeleccionadaId != null)
+            {
+                if (tipoDeMascotaSeleccionadaId.Value > 0)
+                {
+                    lista = _servicio.GetLista(tipoDeMascotaSeleccionadaId.Value);
+                }
+                else
+                {
+                    lista = _servicio.GetLista();
+                }
+            }
+            else
+            {
+                lista = _servicio.GetLista();
+            }
+
+            //var localidades = provinciaSeleccionadaId.HasValue ? db.Localidades.Where(l => l.ProvinciaId == provinciaSeleccionadaId) : db.Localidades;
             var listaDto = _servicio.GetLista(null);
             var listaVm = _mapper.Map<List<MascotaListViewModel>>(listaDto)
-                .OrderBy(c => c.Nombre)
-                .ToPagedList((int)page, 5);
-            return View(listaVm);
+
+            .OrderBy(c => c.Nombre)
+            //.ThenBy(c => c.Provincia)
+            .ToPagedList((int)page, 5);
+            var listaVma = Mapeador.Mapeador.ConstruirListaTipoDeMascotaListVm(lista);
+            var listaTipoDeMascotas = _serviciosTipoDeMascota.GetLista();
+            listaTipoDeMascotas.Insert(0, new TipoDeMascotaListDto() { TipoDeMascotaId = 0, Descripcion = "[Seleccione un Tipo De Mascota]" });
+            listaTipoDeMascotas.Insert(1, new TipoDeMascotaListDto() { TipoDeMascotaId = -1, Descripcion = "[Ver Todas]" });
+            ViewBag.ListaTipoDeMascotas = new SelectList(listaTipoDeMascotas, "TipoDeMascotaId", "Descripcion", tipoDeMascotaSeleccionadaId);
+            return View(listaVma.ToPagedList((int)page, 5));
+
+
+
+
         }
 
         [HttpGet]
@@ -206,6 +267,11 @@ namespace VeterinariaEdiMvc2021.Web.Controllers
             return View(mascotaVm);
         }
 
-            
+        public JsonResult GetRazas(int tipoDeMascotaId)
+        {
+            var razasVm = Mapeador.Mapeador.ConstruirListaRazaListVm(_serviciosRaza.GetLista(tipoDeMascotaId));
+            return Json(razasVm);
+        }
+
     }
 }

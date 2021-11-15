@@ -31,23 +31,25 @@ namespace VeterinariaEdiMvc2021.Windows
             this.Close();
         }
 
-        private void btnCompras_Click(object sender, EventArgs e)
-        {
-            frmCompras frm = DI.Create<frmCompras>();
-            frm.ShowDialog(this);
-        }
+        //private void btnCompras_Click(object sender, EventArgs e)
+        //{
+        //    frmCompras frm = DI.Create<frmCompras>();
+        //    frm.ShowDialog(this);
+        //}
 
-        private void btnVentas_Click(object sender, EventArgs e)
-        {
-            frmVentas frm = DI.Create<frmVentas>();
-            frm.ShowDialog(this);
-        }
 
-        private void btnServicios2_Click(object sender, EventArgs e)
-        {
-            frmServicios2 frm = DI.Create<frmServicios2>();
-            frm.ShowDialog(this);
-        }
+        //private void btnServicios2_Click(object sender, EventArgs e)
+        //{
+        //    frmServicios2 frm = DI.Create<frmServicios2>();
+        //    frm.ShowDialog(this);
+        //}
+
+        //private void btnVentas_Click(object sender, EventArgs e)
+        //{
+        //    frmVentas frm = DI.Create<frmVentas>();
+        //    frm.ShowDialog(this);
+        //}
+
     }
     
 }

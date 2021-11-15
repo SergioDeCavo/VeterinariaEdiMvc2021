@@ -95,6 +95,32 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public List<Raza> GetLista(int tipoDeMascotaId)
+        {
+            try
+            {
+                return _context.Razas.Where(c => c.TipoDeMascotaId == tipoDeMascotaId)
+                    .OrderBy(c => c.Descripcion)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar leer la tabla de Razas");
+            }
+        }
+
+        public List<Raza> GetLista()
+        {
+            try
+            {
+                return _context.Razas.Include(p => p.TipoDeMascota)
+                    .OrderBy(c => c.Descripcion).ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
         public RazaEditDto GetRazaPorId(int? id)
         {

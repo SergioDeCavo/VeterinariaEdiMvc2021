@@ -1,44 +1,60 @@
-﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Carrito.CarritoListViewModel
-@{ ViewBag.Title = "Index"; }
+﻿@model VeterinariaEdiMvc2021.Entidades.ViewModels.Carrito.CarritoViewModel
+@{
+    ViewBag.Title = "Veterinaria";
+}
 
-<h2>Tu pedido</h2>
-
+<h2>
+    Carrito
+</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>Cantidad</th>
-            <th>Medicamento </th>
-            <th class="text-right">Precio</th>
-            <th class="text-right">SubTotal</th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Medicamento
+            </th>
+            <th class="text-right">
+                Precio
+            </th>
+            <th class="text-right">
+                Subtotal
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Items)
+        @foreach (var item in Model.Carrito.Items)
         {
             <tr>
-                <td>@item.Cantidad</td>
-                <td>@item.MedicamentoListViewModel.NombreComercial</td>
-                <td class="text-right">@item.MedicamentoListViewModel.PrecioVenta</td>
-                <td class="text-right">@(item.MedicamentoListViewModel.PrecioVenta * item.Cantidad)</td>
-                <td>
-                    @using (Html.BeginForm("EliminarDelCarrito", "Carrito"))
-                    {
-                        @Html.Hidden("medicamentoId", item.MedicamentoListViewModel.MedicamentoId)
-                        @Html.HiddenFor(x => x.ReturnUrl)
-                        <input type="submit" class="btn btn-sm btn-danger" value="Eliminar" />
-                    }
+                <td class="text-center">
+                    @item.Cantidad
+                </td>
+                <td class="text-left">
+                    @item.Medicamento.NombreComercial
+                </td>
+                <td class="text-right">
+                    @item.Medicamento.PrecioVenta.ToString("c")
+                </td>
+                <td class="text-right">
+                    @((item.Cantidad * item.Medicamento.PrecioVenta).ToString("c"))
                 </td>
             </tr>
         }
-        </tbody>
-        <tfoot>
+    </tbody>
+    <tfoot>
         <tr>
-            <td colspan="3" class="text-right"> <strong>Total:</strong></td>
-            <td class="text-right"><strong>@Model.Items.Sum(i => i.Cantidad * i.MedicamentoListViewModel.PrecioVenta)</strong> </td>
+            <td colspan="3" class="text-right">
+                Total:
+            </td>
+            <td class="text-right">
+                @Model.Carrito.GetCartTotal().ToString("c")
+            </td>
         </tr>
-        </tfoot>
+    </tfoot>
 </table>
 <div class="text-center">
-    <a href="@Model.ReturnUrl" class="btn btn-success">Continuar comprando</a>
-    @Html.ActionLink("CheckOut", "CheckOut", null, new { @class = "btn btn-primary" })
+    <a class="btn btn-primary" href="@Model.ReturnUrl">
+        Continuar Comprando
+    </a>
 </div>

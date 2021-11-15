@@ -154,6 +154,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Binders\CarritoModelBinder.cs" />
+    <Compile Include="Clases\FileHelper.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DrogasController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Controllers\TipoDeMedicamentosController.cs" />
     <Compile Include="Controllers\TipoDeServiciosController.cs" />
     <Compile Include="Controllers\TipoDeTareasController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -285,11 +287,12 @@
     <Content Include="Views\Proveedores\Details.cshtml" />
     <Content Include="Views\Medicamentos\Details.cshtml" />
     <Content Include="Views\Mascotas\Details.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
     <Content Include="Views\Carrito\Index.cshtml" />
-    <Content Include="Views\Carrito\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Imagenes\Empleado\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

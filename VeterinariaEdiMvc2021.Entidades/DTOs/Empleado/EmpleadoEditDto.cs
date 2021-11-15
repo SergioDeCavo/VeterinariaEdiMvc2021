@@ -26,5 +26,7 @@
 
         public int TipoDeTareaId { get; set; }
 
+        public string Imagen { get; set; }
+
     }
 }

@@ -6,6 +6,15 @@
     <h2>Lista de Proveedores</h2>
 
 </div>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+{
+    <label>Filtar por:</label>
+    @Html.DropDownList("localidadSeleccionadaId", ViewBag.ListaLocalidades as SelectList, htmlAttributes: new { @class = "form-control" })
+    <input type="submit" class="btn btn-success" value="Filtrar" />
+}
+
+
 @if (TempData["Msg"] != null)
 {
     var msg = TempData["Msg"].ToString();
@@ -63,7 +72,7 @@
     }
 
 </table>
-Pàgina: (@Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+Pàgina:  @Model.PageNumber  de @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new
 {
     page

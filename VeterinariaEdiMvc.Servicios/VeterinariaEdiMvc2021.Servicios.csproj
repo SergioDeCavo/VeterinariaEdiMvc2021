@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Facades\IServiciosCliente.cs" />
     <Compile Include="Servicios\Facades\IServiciosEmpleado.cs" />
+    <Compile Include="Servicios\Facades\IServiciosItemVenta.cs" />
     <Compile Include="Servicios\Facades\IServiciosLaboratorio.cs" />
     <Compile Include="Servicios\Facades\IServiciosDroga.cs" />
     <Compile Include="Servicios\Facades\IServiciosFormaFarmaceutica.cs" />
@@ -67,10 +69,12 @@
     <Compile Include="Servicios\Facades\IServiciosTipoDeMedicamento.cs" />
     <Compile Include="Servicios\Facades\IServiciosTipoDeServicio.cs" />
     <Compile Include="Servicios\Facades\IServiciosTipoDeTarea.cs" />
+    <Compile Include="Servicios\Facades\IServiciosVenta.cs" />
     <Compile Include="Servicios\ServiciosCliente.cs" />
     <Compile Include="Servicios\ServiciosDroga.cs" />
     <Compile Include="Servicios\ServiciosEmpleado.cs" />
     <Compile Include="Servicios\ServiciosFormaFarmaceutica.cs" />
+    <Compile Include="Servicios\ServiciosItemVenta.cs" />
     <Compile Include="Servicios\ServiciosLaboratorio.cs" />
     <Compile Include="Servicios\ServiciosLocalidad.cs" />
     <Compile Include="Servicios\ServiciosMascota.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Servicios\ServiciosTipoDeMedicamento.cs" />
     <Compile Include="Servicios\ServiciosTipoDeServicio.cs" />
     <Compile Include="Servicios\ServiciosTipoDeTarea.cs" />
+    <Compile Include="Servicios\ServiciosVenta.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VeterinariaEdiMvc2021.Datos\VeterinariaEdiMvc2021.Datos.csproj">

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Localidad;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.Provincia;
 using VeterinariaEdiMvc2021.Entidades.ViewModels.TipoDeDocumento;
@@ -57,6 +58,12 @@ namespace VeterinariaEdiMvc2021.Entidades.ViewModels.Empleado
         [Required(ErrorMessage = "El campo {0} es requerido")]
         [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar un Tipo de Tarea")]
         public int TipoDeTareaId { get; set; }
+
+        [DataType(DataType.ImageUrl)]
+        public string Imagen { get; set; }
+
+        public HttpPostedFileBase ImagenFile { get; set; }
+
 
         public List<TipoDeDocumentoListViewModel> TipoDeDocumento { get; set; }
         public List<LocalidadListViewModel> Localidad { get; set; }

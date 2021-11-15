@@ -82,6 +82,35 @@ namespace VeterinariaEdiMvc2021.Datos.Repositorios
             }
         }
 
+        public List<Mascota> GetLista(int tipoDeMascotaId)
+        {
+            try
+            {
+                return _context.Mascotas.Where(c => c.TipoDeMascotaId == tipoDeMascotaId)
+                    .OrderBy(c => c.Nombre)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar leer la tabla de Ciudades");
+            }
+        }
+
+        public List<Mascota> GetLista()
+        {
+            try
+            {
+                return _context.Mascotas.Include(p => p.TipoDeMascota)
+                    .Include(p => p.Raza)
+                    .Include(p => p.Cliente)
+                    .OrderBy(c => c.Nombre).ToList();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public MascotaEditDto GetMascotaPorId(int? id)
         {
             try
